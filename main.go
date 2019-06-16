@@ -23,6 +23,7 @@ var (
 	}
 
 	programNameRe  = regexp.MustCompile(`<h2>(.+?)?</h2>`)
+	programAboutRe = regexp.MustCompile(`(?s)<div class="brand__content_text__anons">(.+?)?</div>`)
 	episodeRe      = regexp.MustCompile(`(?s)<div class="brand__list\-\-wrap\-\-item">(.+?)?<div class="add\-to\-list">`)
 	episodeAudioRe = regexp.MustCompile(`data\-id="(.+?)?">`)
 	episodeDateRe  = regexp.MustCompile(`brand\-time brand\-menu\-link">(.+?)?\.(.+?)?\.(.+?)? в (.+?)?:(.+?)?</a>`)
@@ -46,14 +47,15 @@ func main() {
 
 	programPage := getPage(programUrl)
 
-	for _, sub := range substitutes {
-		re := regexp.MustCompile(sub.from)
-		programPage = re.ReplaceAll(programPage, []byte(sub.to))
-	}
-
 	feed.Title = string(programNameRe.FindSubmatch(programPage)[1])
 	feed.Link = &feeds.Link{Href: programUrl}
 	episodes := episodeRe.FindAll(programPage, -1)
+
+	programAboutUrl := "http://www.radiorus.ru/brand/" + programNumber + "/about"
+	programAboutPage := getPage(programAboutUrl)
+	programAbout := programAboutRe.FindSubmatch(programAboutPage)[1]
+	re := regexp.MustCompile(`<(.+?)?>`)
+	feed.Description = string(re.ReplaceAll(programAbout, []byte(``)))
 
 	for _, episode := range episodes {
 		episodeUrl := "http://www.radiorus.ru/brand/" + string(episodeUrlRe.FindSubmatch(episode)[1])
@@ -107,6 +109,10 @@ func getPage(pageUrl string) []byte {
 	page, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		log.Fatal(err)
+	}
+	for _, sub := range substitutes {
+		re := regexp.MustCompile(sub.from)
+		page = re.ReplaceAll(page, []byte(sub.to))
 	}
 	return page
 }
