@@ -26,6 +26,7 @@ var (
 	episodeRe      = regexp.MustCompile(`(?s)<div class="brand__list\-\-wrap\-\-item">(.+?)?<div class="add\-to\-list">`)
 	episodeAudioRe = regexp.MustCompile(`data\-id="(.+?)?">`)
 	episodeDateRe  = regexp.MustCompile(`brand\-time brand\-menu\-link">(.+?)?\.(.+?)?\.(.+?)? в (.+?)?:(.+?)?</a>`)
+	episodeDescRe  = regexp.MustCompile(`<p class="anons">(.+?)?</p>`)
 	episodeTitleRe = regexp.MustCompile(`title brand\-menu\-link">(.+?)?</a>`)
 	episodeUrlRe   = regexp.MustCompile(`<a href="/brand/(.+?)?" class="title`)
 
@@ -33,6 +34,7 @@ var (
 		Created: time.Now(),
 	}
 	outputPath, programNumber string
+	err                       error
 )
 
 func main() {
@@ -41,15 +43,8 @@ func main() {
 	flag.Parse()
 
 	programUrl := "http://www.radiorus.ru/brand/" + programNumber + "/episodes"
-	res, err := http.Get(programUrl)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer res.Body.Close()
-	programPage, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
+
+	programPage := getPage(programUrl)
 
 	for _, sub := range substitutes {
 		re := regexp.MustCompile(sub.from)
@@ -75,6 +70,9 @@ func main() {
 		moscow := time.FixedZone("Moscow Time", int((3 * time.Hour).Seconds()))
 		episodeDate := time.Date(date[2], time.Month(date[1]), date[0], date[3], date[4], 0, 0, moscow)
 
+		episodePage := getPage(episodeUrl)
+		episodeDesc := string(episodeDescRe.FindSubmatch(episodePage)[1])
+
 		feed.Add(&feeds.Item{
 			Id:    episodeUrl,
 			Link:  &feeds.Link{Href: episodeUrl},
@@ -84,7 +82,8 @@ func main() {
 				Length: "1024",
 				Type:   "audio/mpeg",
 			},
-			Created: episodeDate,
+			Created:     episodeDate,
+			Description: episodeDesc,
 		})
 	}
 
@@ -97,4 +96,17 @@ func main() {
 	if err := ioutil.WriteFile(outputFile, output, 0644); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func getPage(pageUrl string) []byte {
+	res, err := http.Get(pageUrl)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	page, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return page
 }
