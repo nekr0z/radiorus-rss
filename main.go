@@ -24,6 +24,7 @@ var (
 
 	programNameRe  = regexp.MustCompile(`<h2>(.+?)?</h2>`)
 	programAboutRe = regexp.MustCompile(`(?s)<div class="brand__content_text__anons">(.+?)?</div>`)
+	programImageRe = regexp.MustCompile(`(?s)<div class="brand\-promo__header">(.+?)?<img src="(.+?)?"(.+?)?alt='(.+?)?'>`)
 	episodeRe      = regexp.MustCompile(`(?s)<div class="brand__list\-\-wrap\-\-item">(.+?)?<div class="add\-to\-list">`)
 	episodeAudioRe = regexp.MustCompile(`data\-id="(.+?)?">`)
 	episodeDateRe  = regexp.MustCompile(`brand\-time brand\-menu\-link">(.+?)?\.(.+?)?\.(.+?)? в (.+?)?:(.+?)?</a>`)
@@ -49,6 +50,13 @@ func main() {
 
 	feed.Title = string(programNameRe.FindSubmatch(programPage)[1])
 	feed.Link = &feeds.Link{Href: programUrl}
+	programImage := programImageRe.FindSubmatch(programPage)
+	feed.Image = &feeds.Image{
+		Link:  programUrl,
+		Url:   string(programImage[2]),
+		Title: string(programImage[4]),
+	}
+
 	episodes := episodeRe.FindAll(programPage, -1)
 
 	programAboutUrl := "http://www.radiorus.ru/brand/" + programNumber + "/about"
