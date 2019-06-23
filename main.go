@@ -61,68 +61,73 @@ func main() {
 
 	programUrl := "http://www.radiorus.ru/brand/" + programNumber + "/episodes"
 
-	programPage := getPage(programUrl)
+	for {
+		programPage := getPage(programUrl)
 
-	feed.Title = string(programNameRe.FindSubmatch(programPage)[1])
-	feed.Link = &feeds.Link{Href: programUrl}
-	programImage := programImageRe.FindSubmatch(programPage)
-	feed.Image = &feeds.Image{
-		Link:  programUrl,
-		Url:   string(programImage[2]),
-		Title: string(programImage[4]),
-	}
-
-	episodes := episodeRe.FindAll(programPage, -1)
-
-	programAboutUrl := "http://www.radiorus.ru/brand/" + programNumber + "/about"
-	programAboutPage := getPage(programAboutUrl)
-	programAbout := programAboutRe.FindSubmatch(programAboutPage)[1]
-	re := regexp.MustCompile(`<(.+?)?>`)
-	feed.Description = string(re.ReplaceAll(programAbout, []byte(``)))
-
-	for _, episode := range episodes {
-		if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
-			log.Fatal("Page looks strange. Episode in progress?")
+		feed.Title = string(programNameRe.FindSubmatch(programPage)[1])
+		feed.Link = &feeds.Link{Href: programUrl}
+		programImage := programImageRe.FindSubmatch(programPage)
+		feed.Image = &feeds.Image{
+			Link:  programUrl,
+			Url:   string(programImage[2]),
+			Title: string(programImage[4]),
 		}
-		episodeUrl := "http://www.radiorus.ru/brand/" + string(episodeUrlRe.FindSubmatch(episode)[1])
-		episodeTitle := string(episodeTitleRe.FindSubmatch(episode)[1])
-		episodeAudioUrl := "https://audio.vgtrk.com/download?id=" + string(episodeAudioRe.FindSubmatch(episode)[1])
-		dateBytes := episodeDateRe.FindSubmatch(episode)
-		var date [5]int
-		for i, b := range dateBytes[1:] {
-			date[i], err = strconv.Atoi(string(b))
-			if err != nil {
-				log.Fatal(err)
+
+		episodes := episodeRe.FindAll(programPage, -1)
+
+		programAboutUrl := "http://www.radiorus.ru/brand/" + programNumber + "/about"
+		programAboutPage := getPage(programAboutUrl)
+		programAbout := programAboutRe.FindSubmatch(programAboutPage)[1]
+		re := regexp.MustCompile(`<(.+?)?>`)
+		feed.Description = string(re.ReplaceAll(programAbout, []byte(``)))
+
+		for _, episode := range episodes {
+			if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
+				log.Println("Page looks strange. Episode in progress?")
+				time.Sleep(15 * 60 * time.Second)
+				continue
 			}
+			episodeUrl := "http://www.radiorus.ru/brand/" + string(episodeUrlRe.FindSubmatch(episode)[1])
+			episodeTitle := string(episodeTitleRe.FindSubmatch(episode)[1])
+			episodeAudioUrl := "https://audio.vgtrk.com/download?id=" + string(episodeAudioRe.FindSubmatch(episode)[1])
+			dateBytes := episodeDateRe.FindSubmatch(episode)
+			var date [5]int
+			for i, b := range dateBytes[1:] {
+				date[i], err = strconv.Atoi(string(b))
+				if err != nil {
+					log.Fatal(err)
+				}
+			}
+			moscow := time.FixedZone("Moscow Time", int((3 * time.Hour).Seconds()))
+			episodeDate := time.Date(date[2], time.Month(date[1]), date[0], date[3], date[4], 0, 0, moscow)
+
+			episodePage := getPage(episodeUrl)
+			episodeDesc := string(episodeDescRe.FindSubmatch(episodePage)[1])
+
+			feed.Add(&feeds.Item{
+				Id:    episodeUrl,
+				Link:  &feeds.Link{Href: episodeUrl},
+				Title: episodeTitle,
+				Enclosure: &feeds.Enclosure{
+					Url:    episodeAudioUrl,
+					Length: "1024",
+					Type:   "audio/mpeg",
+				},
+				Created:     episodeDate,
+				Description: episodeDesc,
+			})
 		}
-		moscow := time.FixedZone("Moscow Time", int((3 * time.Hour).Seconds()))
-		episodeDate := time.Date(date[2], time.Month(date[1]), date[0], date[3], date[4], 0, 0, moscow)
 
-		episodePage := getPage(episodeUrl)
-		episodeDesc := string(episodeDescRe.FindSubmatch(episodePage)[1])
-
-		feed.Add(&feeds.Item{
-			Id:    episodeUrl,
-			Link:  &feeds.Link{Href: episodeUrl},
-			Title: episodeTitle,
-			Enclosure: &feeds.Enclosure{
-				Url:    episodeAudioUrl,
-				Length: "1024",
-				Type:   "audio/mpeg",
-			},
-			Created:     episodeDate,
-			Description: episodeDesc,
-		})
-	}
-
-	rss, err := feed.ToRss()
-	if err != nil {
-		log.Fatal(err)
-	}
-	outputFile := outputPath + "radiorus-" + programNumber + ".rss"
-	output := []byte(rss)
-	if err := ioutil.WriteFile(outputFile, output, 0644); err != nil {
-		log.Fatal(err)
+		rss, err := feed.ToRss()
+		if err != nil {
+			log.Fatal(err)
+		}
+		outputFile := outputPath + "radiorus-" + programNumber + ".rss"
+		output := []byte(rss)
+		if err := ioutil.WriteFile(outputFile, output, 0644); err != nil {
+			log.Fatal(err)
+		}
+		break
 	}
 }
 
