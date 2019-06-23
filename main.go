@@ -83,7 +83,7 @@ func main() {
 
 		for _, episode := range episodes {
 			if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
-				log.Println("Page looks strange. Episode in progress?")
+				log.Println("Page looks strange. Episode in progress? Will wait for 15 minutes and try again...")
 				time.Sleep(15 * 60 * time.Second)
 				continue
 			}
