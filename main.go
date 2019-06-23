@@ -81,6 +81,9 @@ func main() {
 	feed.Description = string(re.ReplaceAll(programAbout, []byte(``)))
 
 	for _, episode := range episodes {
+		if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
+			log.Fatal("Page looks strange. Episode in progress?")
+		}
 		episodeUrl := "http://www.radiorus.ru/brand/" + string(episodeUrlRe.FindSubmatch(episode)[1])
 		episodeTitle := string(episodeTitleRe.FindSubmatch(episode)[1])
 		episodeAudioUrl := "https://audio.vgtrk.com/download?id=" + string(episodeAudioRe.FindSubmatch(episode)[1])
