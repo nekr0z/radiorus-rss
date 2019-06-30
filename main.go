@@ -81,11 +81,12 @@ func main() {
 		re := regexp.MustCompile(`<(.+?)?>`)
 		feed.Description = string(re.ReplaceAll(programAbout, []byte(``)))
 
+		badFeed := false
+
 		for _, episode := range episodes {
 			if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
-				log.Println("Page looks strange. Episode in progress? Will wait for 15 minutes and try again...")
-				time.Sleep(15 * 60 * time.Second)
-				continue
+				badFeed = true
+				break
 			}
 			episodeUrl := "http://www.radiorus.ru/brand/" + string(episodeUrlRe.FindSubmatch(episode)[1])
 			episodeTitle := string(episodeTitleRe.FindSubmatch(episode)[1])
@@ -118,6 +119,11 @@ func main() {
 			})
 		}
 
+		if badFeed {
+			log.Println("Page looks strange. Episode in progress? Will wait for 15 minutes and try again...")
+			time.Sleep(15 * 60 * time.Second)
+			continue
+		}
 		rss, err := feed.ToRss()
 		if err != nil {
 			log.Fatal(err)
