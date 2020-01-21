@@ -37,3 +37,6 @@ $ radiorus-rss [опции]
 (и при компиляции входят в состав приложения):
 * [gorilla/feeds](https://github.com/gorilla/feeds) Copyright © 2013-2018 The Gorilla Feeds Authors
 * [The Go Programming Language](https://golang.org) Copyright © 2009 The Go Authors
+
+## Если нравится и хочется помочь
+Можно открыть issue или pull request, а можно просто [купить мне кофе](https://www.buymeacoffee.com/nekr0z).
