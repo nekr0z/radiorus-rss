@@ -22,6 +22,7 @@ import (
 	"net/http"
 	"regexp"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/gorilla/feeds"
@@ -64,16 +65,22 @@ func main() {
 	}
 
 	populateFeed(feed, page)
+	describeFeed(feed)
 	describeEpisodes(feed)
 
 	feed.Created = time.Now()
+	outputFile := outputPath + "radiorus-" + programNumber + ".rss"
+
+	writeFeed(feed, outputFile)
+}
+
+func writeFeed(feed *feeds.Feed, filename string) {
 	rss, err := feed.ToRss()
 	if err != nil {
 		log.Fatal(err)
 	}
-	outputFile := outputPath + "radiorus-" + programNumber + ".rss"
 	output := []byte(rss)
-	if err := ioutil.WriteFile(outputFile, output, 0644); err != nil {
+	if err := ioutil.WriteFile(filename, output, 0644); err != nil {
 		log.Fatal(err)
 	}
 }
@@ -89,12 +96,6 @@ func populateFeed(feed *feeds.Feed, page []byte) {
 		}
 
 		episodes := episodeRe.FindAll(page, -1)
-
-		programAboutUrl := "http://www.radiorus.ru/brand/" + programNumber + "/about"
-		programAboutPage := getPage(programAboutUrl)
-		programAbout := programAboutRe.FindSubmatch(programAboutPage)[1]
-		re := regexp.MustCompile(`<(.+?)?>`)
-		feed.Description = string(re.ReplaceAll(programAbout, []byte(``)))
 
 		badFeed := false
 
@@ -138,6 +139,14 @@ func populateFeed(feed *feeds.Feed, page []byte) {
 		}
 		break
 	}
+}
+
+func describeFeed(feed *feeds.Feed) {
+	programAboutUrl := strings.TrimSuffix(feed.Link.Href, "episodes") + "about"
+	programAboutPage := getPage(programAboutUrl)
+	programAbout := programAboutRe.FindSubmatch(programAboutPage)[1]
+	re := regexp.MustCompile(`<(.+?)?>`)
+	feed.Description = string(re.ReplaceAll(programAbout, []byte(``)))
 }
 
 func describeEpisodes(feed *feeds.Feed) {
