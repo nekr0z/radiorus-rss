@@ -48,9 +48,6 @@ var (
 	episodeTitleRe = regexp.MustCompile(`title brand\-menu\-link">(.+?)?</a>`)
 	episodeUrlRe   = regexp.MustCompile(`<a href="/brand/(.+?)?" class="title`)
 
-	feed = &feeds.Feed{
-		Created: time.Now(),
-	}
 	outputPath, programNumber string
 )
 
@@ -61,19 +58,37 @@ func main() {
 
 	programUrl := "http://www.radiorus.ru/brand/" + programNumber + "/episodes"
 
-	for {
-		programPage := getPage(programUrl)
+	page := getPage(programUrl)
+	feed := &feeds.Feed{
+		Link: &feeds.Link{Href: programUrl},
+	}
 
-		feed.Title = string(programNameRe.FindSubmatch(programPage)[1])
-		feed.Link = &feeds.Link{Href: programUrl}
-		programImage := programImageRe.FindSubmatch(programPage)
+	populateFeed(feed, page)
+	describeEpisodes(feed)
+
+	feed.Created = time.Now()
+	rss, err := feed.ToRss()
+	if err != nil {
+		log.Fatal(err)
+	}
+	outputFile := outputPath + "radiorus-" + programNumber + ".rss"
+	output := []byte(rss)
+	if err := ioutil.WriteFile(outputFile, output, 0644); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func populateFeed(feed *feeds.Feed, page []byte) {
+	for {
+		feed.Title = string(programNameRe.FindSubmatch(page)[1])
+		programImage := programImageRe.FindSubmatch(page)
 		feed.Image = &feeds.Image{
-			Link:  programUrl,
+			Link:  feed.Link.Href,
 			Url:   string(programImage[2]),
 			Title: string(programImage[4]),
 		}
 
-		episodes := episodeRe.FindAll(programPage, -1)
+		episodes := episodeRe.FindAll(page, -1)
 
 		programAboutUrl := "http://www.radiorus.ru/brand/" + programNumber + "/about"
 		programAboutPage := getPage(programAboutUrl)
@@ -103,9 +118,6 @@ func main() {
 			moscow := time.FixedZone("Moscow Time", int((3 * time.Hour).Seconds()))
 			episodeDate := time.Date(date[2], time.Month(date[1]), date[0], date[3], date[4], 0, 0, moscow)
 
-			episodePage := getPage(episodeUrl)
-			episodeDesc := string(episodeDescRe.FindSubmatch(episodePage)[1])
-
 			feed.Add(&feeds.Item{
 				Id:    episodeUrl,
 				Link:  &feeds.Link{Href: episodeUrl},
@@ -115,8 +127,7 @@ func main() {
 					Length: "1024",
 					Type:   "audio/mpeg",
 				},
-				Created:     episodeDate,
-				Description: episodeDesc,
+				Created: episodeDate,
 			})
 		}
 
@@ -125,17 +136,19 @@ func main() {
 			time.Sleep(15 * 60 * time.Second)
 			continue
 		}
-		rss, err := feed.ToRss()
-		if err != nil {
-			log.Fatal(err)
-		}
-		outputFile := outputPath + "radiorus-" + programNumber + ".rss"
-		output := []byte(rss)
-		if err := ioutil.WriteFile(outputFile, output, 0644); err != nil {
-			log.Fatal(err)
-		}
 		break
 	}
+}
+
+func describeEpisodes(feed *feeds.Feed) {
+	for _, item := range feed.Items {
+		page := getPage(item.Link.Href)
+		item.Description = describeEpisode(page)
+	}
+}
+
+func describeEpisode(page []byte) string {
+	return string(episodeDescRe.FindSubmatch(page)[1])
 }
 
 func getPage(pageUrl string) []byte {
