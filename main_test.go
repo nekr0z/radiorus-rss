@@ -21,6 +21,8 @@ import (
 	"io/ioutil"
 	"path/filepath"
 	"testing"
+
+	"github.com/gorilla/feeds"
 )
 
 var update = flag.Bool("update", false, "update .golden files")
@@ -38,6 +40,30 @@ func helperLoadBytes(t *testing.T, name string) []byte {
 func TestCleanText(t *testing.T) {
 	about := helperLoadBytes(t, "about")
 	actual := cleanText(about)
+	golden := filepath.Join("testdata", t.Name()+".golden")
+	if *update {
+		if err := ioutil.WriteFile(golden, actual, 0644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	expected, _ := ioutil.ReadFile(golden)
+
+	if !bytes.Equal(actual, expected) {
+		t.Fail()
+	}
+}
+
+func TestFeed(t *testing.T) {
+	page := helperLoadBytes(t, "episodes")
+	page = cleanText(page)
+
+	feed := &feeds.Feed{
+		Link: &feeds.Link{Href: "http://www.radiorus.ru/brand/57083/episodes"},
+	}
+
+	populateFeed(feed, page)
+
+	actual := createFeed(feed)
 	golden := filepath.Join("testdata", t.Name()+".golden")
 	if *update {
 		if err := ioutil.WriteFile(golden, actual, 0644); err != nil {

@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Выпуски / "Аэростат" / Радиостанция «Радио России»</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta property="og:title" content="Выпуски / &quot;Аэростат&quot; / Радиостанция «Радио России»">
+    <meta property="og:description" content="Программа Бориса Гребенщикова &quot;Аэростат&quot; посвящена истории рок-музыки.  Спокойный и ненавязчивый рассказ БГ субъективен, но именно это придает ему особую ценность...">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.radiorus.ru/brand/57083/episodes">
+        <meta property="og:image" content="https://cdn-st4.rtr-vesti.ru/vh/pictures/xw/124/617/1.jpg">
+                <link rel="stylesheet" href="/css/main.min.css?v=0.0.34">
+    <link href="/favicon.ico?v=0.0.34" rel="shortcut icon">
+</head>
+<body><div class="header">
+    <div class="search-open"></div>
+    <div class="search">
+        <div class="search-close"></div>
+        <a href="/" class="search-logo"></a>
+        <div class="search-phone"><a href="tel:+78002229992"></a><span>+7 800 <b>222 999 2</b></span></div>
+        <a href="/social"></a>
+        <div class="search-social">
+            <a class="social__android" href="https://play.google.com/store/apps/details?id=mobi.mpk.radiorus&hl=ru"></a>
+            <a class="social__ios" href="https://itunes.apple.com/ru/app/id1256377747?l=en&mt=8"></a>
+        </div>
+
+        <form action="/search" class="no-ajaxy">
+            <label for="query">Поиск по сайту</label>
+            <input type="text" id="query" value="" name="q" placeholder="поиск" autocomplete="off">
+            <input type="submit" value="Найти">
+        </form>
+    </div>
+    <div class="menu">
+    <ul>
+                    <li >
+                <a
+                                        href="/news/date/28-01-2020">&quot;Вести&quot;</a></li>
+                    <li >
+                <a
+                                        href="/tvp/date/28-01-2020">Сетка вещания</a></li>
+                    <li  class="main " >
+                <a
+                                        href="/"></a></li>
+                    <li >
+                <a
+                         class="active"                 href="/brands">Программы / Подкасты</a></li>
+                    <li >
+                <a
+                                        href="/contacts">Контакты</a></li>
+            </ul>
+</div>
+<div class="mobile-menu">
+    <div class="mobile-menu__open"></div>
+    <div class="mobile-menu__list">
+        <a href="/" class="logo"></a>
+        <ul>
+                                                <li ><a href="/news/date/28-01-2020">&quot;Вести&quot;</a></li>
+                                                                <li ><a href="/tvp/date/28-01-2020">Сетка вещания</a></li>
+                                                                                            <li  class="active" ><a href="/brands">Программы / Подкасты</a></li>
+                                                                <li ><a href="/contacts">Контакты</a></li>
+                                        <li ><a href="/social">Соцсети</a></li>
+            <li class="apps">
+                <a class="social__android" href="https://play.google.com/store/apps/details?id=mobi.mpk.radiorus&hl=ru"></a>
+                <a class="social__ios" href="https://itunes.apple.com/ru/app/id1256377747?l=en&mt=8"></a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+    <a href="/" class="mobile-logo "></a>
+    <div class="phone"><a href="tel:+78002229992"></a><span>+7 800 <b>222 999 2</b></span></div>
+    <a href="/social"></a>
+    <div class="social">
+        <a class="social__android" href="https://play.google.com/store/apps/details?id=mobi.mpk.radiorus&hl=ru"></a>
+        <a class="social__ios" href="https://itunes.apple.com/ru/app/id1256377747?l=en&mt=8"></a>
+    </div>
+</div>
+<div id="page" class="page">
+    
+    <div class="content">
+        <div class="brand">
+
+            <div class="brand-promo">
+    <h2><a href="/brand/57083">&quot;Аэростат&quot;</a></h2>
+    <div class="brand-promo__hash">
+                                    <a href="/tags/2550">#Борис Гребенщиков</a>
+                            <a href="/tags/23296">#аэростат</a>
+                            <a href="/tags/190722">#музыкальный</a>
+                        </div>
+            <div class="brand-promo__header">
+            <img src="https://cdn-st4.rtr-vesti.ru/vh/pictures/xw/124/617/1.jpg" alt='&quot;Аэростат&quot;'>
+                                                                                                                        </div>
+    </div>
+            <div class="episode-filtres">
+                <div class="brand__menu_tab swiper-container">
+    <div class="swiper-wrapper">
+                                                        <div class="item active swiper-slide"><a href="/brand/57083/episodes" class="brand-menu-link">выпуски</a></div>
+                                                                <div class="item swiper-slide"><a href="/brand/57083/about" class="brand-menu-link">описание</a></div>
+                                        </div>
+</div>
+                <div class="audio-filter">
+
+                                                                    
+            <div class="audio-filter__item disable">
+            <span class="soon">Скоро в эфире</span>
+        </div>
+    
+            <div class="audio-filter__item disable">
+            <div class="audio-filter__rubric"><span>Выбрать рубрику</span></div>
+        </div>
+    
+            <div class="audio-filter__item last ">
+            <div class="brand__list--calendar"><span
+                        class="calendar-text">Выбрать дату</span>
+                <div class="datepicker" id="datepicker" data-uri="/brand/57083/episodes" data-events="/brand/57083/events"
+                     data-type="episodes" data-current="26-01-2020"></div>
+            </div>
+        </div>
+    
+</div>            </div>
+
+
+            <div class="brand__list">
+                <div class="brand__list--wrap">
+                    <div class="mobile-scroll__brand">
+                        <div class="wrap">
+                                                                                                                        <div class="brand__list--wrap--item">
+                                    <div class="photo-wrap">
+                                                                                    <a href="/brand/57083/episode/2237849" class="photo-wrap__link">
+                                                <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/bw/207/010/1.jpg"
+                                                     alt="Ансамбль &quot;Pied Pipers&quot; | public domain">
+                                                <!-- если фото > 1 [ -->
+                                                                                            <!-- ] если фото > 1 -->
+                                            </a>
+                                                                            </div>
+                                    <a href="/brand/57083/episode/2237849"
+                                       class="brand-time brand-menu-link">26.01.2020 в 14:10</a>
+                                    <a href="/brand/57083/episode/2237849" class="title brand-menu-link">Новые имена 27</a>
+                                    <a href="/brand/57083/episode/2237849" class="more-info brand-menu-link">Подробнее</a>
+
+                                                                        <!-- если есть аудио[ -->
+                                        <div class="audio-count" data-type="audio"
+                                             data-id="2467579"></div>
+                                        <div class="add-to-list"></div>
+                                        <!-- ] если есть аудио -->
+                                    
+                                </div>
+                                                                                            <div class="brand__list--wrap--item">
+                                    <div class="photo-wrap">
+                                                                                    <a href="/brand/57083/episode/2237781" class="photo-wrap__link">
+                                                <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/bw/183/795/6.jpg"
+                                                     alt="The Cure | momento mori, Malaysia">
+                                                <!-- если фото > 1 [ -->
+                                                                                            <!-- ] если фото > 1 -->
+                                            </a>
+                                                                            </div>
+                                    <a href="/brand/57083/episode/2237781"
+                                       class="brand-time brand-menu-link">19.01.2020 в 14:10</a>
+                                    <a href="/brand/57083/episode/2237781" class="title brand-menu-link">The Cure</a>
+                                    <a href="/brand/57083/episode/2237781" class="more-info brand-menu-link">Подробнее</a>
+
+                                                                        <!-- если есть аудио[ -->
+                                        <div class="audio-count" data-type="audio"
+                                             data-id="2466052"></div>
+                                        <div class="add-to-list"></div>
+                                        <!-- ] если есть аудио -->
+                                    
+                                </div>
+                                                                                            <div class="brand__list--wrap--item">
+                                    <div class="photo-wrap">
+                                                                                    <a href="/brand/57083/episode/2236152" class="photo-wrap__link">
+                                                <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/bw/206/728/8.jpg"
+                                                     alt="Американская музыкальная группа &quot;Bonny Light Horseman&quot;">
+                                                <!-- если фото > 1 [ -->
+                                                                                            <!-- ] если фото > 1 -->
+                                            </a>
+                                                                            </div>
+                                    <a href="/brand/57083/episode/2236152"
+                                       class="brand-time brand-menu-link">12.01.2020 в 14:10</a>
+                                    <a href="/brand/57083/episode/2236152" class="title brand-menu-link">Новые песни января</a>
+                                    <a href="/brand/57083/episode/2236152" class="more-info brand-menu-link">Подробнее</a>
+
+                                                                        <!-- если есть аудио[ -->
+                                        <div class="audio-count" data-type="audio"
+                                             data-id="2464622"></div>
+                                        <div class="add-to-list"></div>
+                                        <!-- ] если есть аудио -->
+                                    
+                                </div>
+                                                                                            <!-- 4-ый элемент - реклама [ -->
+                                    <div class="brand__list--wrap--item size_240 advblock">
+                                        <!-- Adv slot 152 [ -->
+
+                                        
+
+    
+        
+        
+                    <div class="vgtrk-a1" data-id="239">
+        
+                <script src="https://yastatic.net/pcode/adfox/loader.js" crossorigin="anonymous"></script>
+<div style="clear: both;">
+<!--AdFox START-->
+<!--vgtrk.com-->
+<!--Площадка: Радио России / Сквозной / 240x400-->
+<!--Категория: <не задана>-->
+<!--Тип баннера: 240x400js-->
+<div id="adfox_155022573574236522"></div>
+<script>
+    window.Ya.adfoxCode.create({
+        ownerId: 166267,
+        containerId: 'adfox_155022573574236522',
+        params: {
+            p1: 'blrhb',
+            p2: 'ejzf',
+            puid2: '',
+            puid3: ''
+        }
+    });
+</script>
+</div>
+
+                    </div>
+        
+        
+    
+
+
+
+                                        <!-- ] Adv slot 152 -->
+                                    </div>
+                                    <!-- ] 4-ый элемент - реклама -->
+                                                                <div class="brand__list--wrap--item">
+                                    <div class="photo-wrap">
+                                                                                    <a href="/brand/57083/episode/2234173" class="photo-wrap__link">
+                                                <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/bw/206/485/7.jpg"
+                                                     alt="Мир бесконечно больше и разнообразнее | фото &quot;Новости Афона&quot;">
+                                                <!-- если фото > 1 [ -->
+                                                                                            <!-- ] если фото > 1 -->
+                                            </a>
+                                                                            </div>
+                                    <a href="/brand/57083/episode/2234173"
+                                       class="brand-time brand-menu-link">05.01.2020 в 14:10</a>
+                                    <a href="/brand/57083/episode/2234173" class="title brand-menu-link">Новогодние притчи</a>
+                                    <a href="/brand/57083/episode/2234173" class="more-info brand-menu-link">Подробнее</a>
+
+                                                                        <!-- если есть аудио[ -->
+                                        <div class="audio-count" data-type="audio"
+                                             data-id="2463470"></div>
+                                        <div class="add-to-list"></div>
+                                        <!-- ] если есть аудио -->
+                                    
+                                </div>
+                                                                                            <div class="brand__list--wrap--item">
+                                    <div class="photo-wrap">
+                                                                                    <a href="/brand/57083/episode/2233216" class="photo-wrap__link">
+                                                <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/bw/206/328/1.jpg"
+                                                     alt="фото pixabay.com">
+                                                <!-- если фото > 1 [ -->
+                                                                                            <!-- ] если фото > 1 -->
+                                            </a>
+                                                                            </div>
+                                    <a href="/brand/57083/episode/2233216"
+                                       class="brand-time brand-menu-link">29.12.2019 в 14:10</a>
+                                    <a href="/brand/57083/episode/2233216" class="title brand-menu-link">С наступающим!</a>
+                                    <a href="/brand/57083/episode/2233216" class="more-info brand-menu-link">Подробнее</a>
+
+                                                                        <!-- если есть аудио[ -->
+                                        <div class="audio-count" data-type="audio"
+                                             data-id="2462338"></div>
+                                        <div class="add-to-list"></div>
+                                        <!-- ] если есть аудио -->
+                                    
+                                </div>
+                                                                                            <div class="brand__list--wrap--item">
+                                    <div class="photo-wrap">
+                                                                                    <a href="/brand/57083/episode/2231513" class="photo-wrap__link">
+                                                <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/bw/185/021/2.jpg"
+                                                     alt="">
+                                                <!-- если фото > 1 [ -->
+                                                                                                    <div class="count">2</div>
+                                                                                        <!-- ] если фото > 1 -->
+                                            </a>
+                                                                            </div>
+                                    <a href="/brand/57083/episode/2231513"
+                                       class="brand-time brand-menu-link">22.12.2019 в 14:10</a>
+                                    <a href="/brand/57083/episode/2231513" class="title brand-menu-link">Рождество</a>
+                                    <a href="/brand/57083/episode/2231513" class="more-info brand-menu-link">Подробнее</a>
+
+                                                                        <!-- если есть аудио[ -->
+                                        <div class="audio-count" data-type="audio"
+                                             data-id="2460859"></div>
+                                        <div class="add-to-list"></div>
+                                        <!-- ] если есть аудио -->
+                                    
+                                </div>
+                                                                                            <div class="brand__list--wrap--item">
+                                    <div class="photo-wrap">
+                                                                                    <a href="/brand/57083/episode/2229234" class="photo-wrap__link">
+                                                <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/bw/205/377/2.jpg"
+                                                     alt="Магистр Йода из &quot;Звёздных войн&quot;">
+                                                <!-- если фото > 1 [ -->
+                                                                                            <!-- ] если фото > 1 -->
+                                            </a>
+                                                                            </div>
+                                    <a href="/brand/57083/episode/2229234"
+                                       class="brand-time brand-menu-link">15.12.2019 в 14:10</a>
+                                    <a href="/brand/57083/episode/2229234" class="title brand-menu-link">&quot;То да сё # 6&quot; (Сила музыки)</a>
+                                    <a href="/brand/57083/episode/2229234" class="more-info brand-menu-link">Подробнее</a>
+
+                                                                        <!-- если есть аудио[ -->
+                                        <div class="audio-count" data-type="audio"
+                                             data-id="2459405"></div>
+                                        <div class="add-to-list"></div>
+                                        <!-- ] если есть аудио -->
+                                    
+                                </div>
+                                                                                            <div class="brand__list--wrap--item">
+                                    <div class="photo-wrap">
+                                                                                    <a href="/brand/57083/episode/2226836" class="photo-wrap__link">
+                                                <img src="https://cdn-st3.rtr-vesti.ru/vh/pictures/bw/198/971/8.jpg"
+                                                     alt="Английская фолк-певица Кейт Расби">
+                                                <!-- если фото > 1 [ -->
+                                                                                                    <div class="count">2</div>
+                                                                                        <!-- ] если фото > 1 -->
+                                            </a>
+                                                                            </div>
+                                    <a href="/brand/57083/episode/2226836"
+                                       class="brand-time brand-menu-link">08.12.2019 в 14:10</a>
+                                    <a href="/brand/57083/episode/2226836" class="title brand-menu-link">Новые песни декабря</a>
+                                    <a href="/brand/57083/episode/2226836" class="more-info brand-menu-link">Подробнее</a>
+
+                                                                        <!-- если есть аудио[ -->
+                                        <div class="audio-count" data-type="audio"
+                                             data-id="2457932"></div>
+                                        <div class="add-to-list"></div>
+                                        <!-- ] если есть аудио -->
+                                    
+                                </div>
+                                                                                            <div class="brand__list--wrap--item">
+                                    <div class="photo-wrap">
+                                                                                    <a href="/brand/57083/episode/2223937" class="photo-wrap__link">
+                                                <img src="https://cdn-st4.rtr-vesti.ru/vh/pictures/bw/204/339/5.jpg"
+                                                     alt="Британский певец, мультиинструменталист Джефф Линн (Jeff Lynne), &quot;Оркестр электрического света&quot; (ELO)">
+                                                <!-- если фото > 1 [ -->
+                                                                                            <!-- ] если фото > 1 -->
+                                            </a>
+                                                                            </div>
+                                    <a href="/brand/57083/episode/2223937"
+                                       class="brand-time brand-menu-link">01.12.2019 в 14:10</a>
+                                    <a href="/brand/57083/episode/2223937" class="title brand-menu-link">То да сё № 5</a>
+                                    <a href="/brand/57083/episode/2223937" class="more-info brand-menu-link">Подробнее</a>
+
+                                                                        <!-- если есть аудио[ -->
+                                        <div class="audio-count" data-type="audio"
+                                             data-id="2456411"></div>
+                                        <div class="add-to-list"></div>
+                                        <!-- ] если есть аудио -->
+                                    
+                                </div>
+                                                                                            <div class="brand__list--wrap--item">
+                                    <div class="photo-wrap">
+                                                                                    <a href="/brand/57083/episode/2222868" class="photo-wrap__link">
+                                                <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/bw/147/250/0.jpg"
+                                                     alt="Джефф Линн">
+                                                <!-- если фото > 1 [ -->
+                                                                                            <!-- ] если фото > 1 -->
+                                            </a>
+                                                                            </div>
+                                    <a href="/brand/57083/episode/2222868"
+                                       class="brand-time brand-menu-link">24.11.2019 в 14:10</a>
+                                    <a href="/brand/57083/episode/2222868" class="title brand-menu-link">ELO: &quot;Из ниоткуда&quot; 2019</a>
+                                    <a href="/brand/57083/episode/2222868" class="more-info brand-menu-link">Подробнее</a>
+
+                                                                        <!-- если есть аудио[ -->
+                                        <div class="audio-count" data-type="audio"
+                                             data-id="2454907"></div>
+                                        <div class="add-to-list"></div>
+                                        <!-- ] если есть аудио -->
+                                    
+                                </div>
+                                                    </div>
+                    </div>
+                </div>
+                                    <a class="brand__list--show-more show-more no-ajaxy"
+                       href="/brand/57083/episodes/json?offset=1">Показать еще</a>
+                    <div class="preloader">
+                        <div class="l_main">
+                            <div class="l_square"><span></span><span></span><span></span></div>
+                            <div class="l_square"><span></span><span></span><span></span></div>
+                            <div class="l_square"><span></span><span></span><span></span></div>
+                            <div class="l_square"><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                
+                                    <div class="brand__list--recommend">
+                        <div class="brand__list--recommend--title">Рекомендуем</div>
+                        <div class="brand__list--recommend--wrap">
+                                                            <a href="https://www.radiorus.ru/brand/63253/episodes" class="brand__list--recommend--wrap--item">
+                                    <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/o/195/628/1.jpg" alt='&quot;Российский радиоуниверситет&quot;'>
+                                    <div class="brand__list--recommend--wrap--item--info">
+                                        <div class="brand__list--recommend--wrap--item--play"></div>
+                                        <div class="brand__list--recommend--wrap--item--title">&quot;Российский радиоуниверситет&quot;</div>
+                                    </div>
+                                </a>
+                                                            <a href="https://www.radiorus.ru/brand/63802/episodes" class="brand__list--recommend--wrap--item">
+                                    <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/o/195/633/3.jpg" alt='&quot;Вечерняя смена&quot;'>
+                                    <div class="brand__list--recommend--wrap--item--info">
+                                        <div class="brand__list--recommend--wrap--item--play"></div>
+                                        <div class="brand__list--recommend--wrap--item--title">&quot;Вечерняя смена&quot;</div>
+                                    </div>
+                                </a>
+                                                            <a href="https://www.radiorus.ru/brand/57079/episodes" class="brand__list--recommend--wrap--item">
+                                    <img src="https://cdn-st4.rtr-vesti.ru/vh/pictures/o/204/940/3.jpg" alt='&quot;Посоветуйте, доктор!&quot;'>
+                                    <div class="brand__list--recommend--wrap--item--info">
+                                        <div class="brand__list--recommend--wrap--item--play"></div>
+                                        <div class="brand__list--recommend--wrap--item--title">&quot;Посоветуйте, доктор!&quot;</div>
+                                    </div>
+                                </a>
+                                                    </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="footer">
+    <div class="wrapper bigger-block">
+                <a class="about" href="/about">О Радио России</a>
+        <div class="line-c"></div>
+                                                                            <div class="footer-blocks">
+            <div class="block link">
+                <a href="http://www.cultradio.ru/" target="_blank">&laquo;Радио России - Культура&raquo;</a>
+            </div>
+            <div class="block link">
+                <a href="http://deti.radiorus.ru/" target="_blank">Программа &laquo;Детский вопрос&raquo;</a>
+            </div>
+        </div>
+
+        
+        <div class="foot-text">
+            <p>&copy; Все права на любые материалы, опубликованные на сайте, защищены в соответствии с российским и международным законодательством об авторском праве и смежных правах.</p>
+            <p>Использование любых аудио-, фото- и видеоматериалов, размещенных на сайте, допускается только с разрешения правообладателя и ссылкой на сайт radiorus.ru. При полной или частичной перепечатке текстовых материалов в интернете гиперссылка на radiorus.ru обязательна. Техническое сопровождение: Дирекция информационных технологий ВГТРК. Для детей старше 16 лет.</p>
+            <div class="clear"></div>
+            <p class="error-message">На сайте функционирует система коррекции ошибок. Обнаружив неточность в тексте, выделите ее и нажмите Ctrl+Enter.</p>
+            <div class="counters">
+
+                <span id="liru_wrap"></span>
+                <script type="text/javascript">
+
+                    window.loadLiRu = function() {
+                        var a_liru = document.createElement('a');
+                        a_liru.href = 'https://www.liveinternet.ru/click';
+                        a_liru.target = '_blank';
+                        var img_liru = document.createElement('img');
+                        img_liru.title = 'liveinternet.ru';
+                        img_liru.src = 'https://counter.yadro.ru/hit?t24.10;r' +
+                            escape(document.referrer)+((typeof(screen)=='undefined')?'':
+                                ';s'+screen.width+'*'+screen.height+'*'+(screen.colorDepth?
+                                screen.colorDepth:screen.pixelDepth))+';u'+escape(document.URL)+
+                            ';'+Math.random();
+                        img_liru.width = 88;
+                        img_liru.height = 15;
+                        img_liru.style = 'border: none';
+                        a_liru.appendChild(img_liru);
+
+                        document.querySelector('#liru_wrap').innerHTML = a_liru.outerHTML;
+                    }
+
+                    window.loadLiRu();
+
+                </script>
+
+
+                <div id='Rambler-counter'>
+                    <noscript>
+                        <a href="https://top100.rambler.ru/navi/208028/">
+                            <img src="https://counter.rambler.ru/top100.cnt?208028"
+                                 alt="Rambler's Top100" border="0"/>
+                        </a>
+                    </noscript>
+                </div>
+                <script type="text/javascript">
+                    var _top100q = _top100q || [];
+                    _top100q.push(['setAccount', '208028']);
+                    _top100q.push(['trackPageviewByLogo',
+                        document.getElementById('Rambler-counter')]);
+
+                    (function () {
+                        var pa   = document.createElement("script");
+                        pa.type  = "text/javascript";
+                        pa.async = true;
+                        pa.src   = ("https:" == document.location.protocol ?
+                            "https:" : "http:") + "//st.top100.ru/top100/top100.js";
+                        var s    = document.getElementsByTagName("script")[0];
+                        s.parentNode.insertBefore(pa, s);
+                    })();
+                </script>
+
+
+                <!-- Yandex.Metrika counter -->
+                <script type="text/javascript" >
+                    (function (d, w, c) {
+                        (w[c] = w[c] || []).push(function() {
+                            try {
+                                w.yaCounter48552353 = new Ya.Metrika({
+                                    id:48552353,
+                                    clickmap:true,
+                                    trackLinks:true,
+                                    accurateTrackBounce:true,
+                                    webvisor:true,
+                                    trackHash:true
+                                });
+                            } catch(e) { }
+                        });
+                        var n = d.getElementsByTagName("script")[0],
+                            s = d.createElement("script"),
+                            f = function () {
+                                n.parentNode.insertBefore(s, n); };
+                        s.type = "text/javascript";
+                        s.async = true;
+                        s.src = "https://mc.yandex.ru/metrika/watch.js";
+                        if (w.opera == "[object Opera]") {
+                            d.addEventListener("DOMContentLoaded", f, false);
+                        } else { f(); }
+                    })(document, window, "yandex_metrika_callbacks"); </script>
+                <noscript><div><img src="https://mc.yandex.ru/watch/48552353" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+                <!-- /Yandex.Metrika counter -->
+
+                <script>
+                    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                    ga('create', 'UA-45050991-1', 'radiorus.ru');
+                    ga('send', 'pageview');
+
+                </script>
+
+                <!-- tns-counter.ru -->
+                <script type="text/javascript">
+                    (function(win, doc, cb){
+                        (win[cb] = win[cb] || []).push(function() {
+                            try {
+                                tnsCounterVgtrk_ru = new TNS.TnsCounter({
+                                    'account':'vgtrk_ru',
+                                    'tmsec': 'radiorus_total'
+                                });
+                            } catch(e){}
+                        });
+
+                        var tnsscript = doc.createElement('script');
+                        tnsscript.type = 'text/javascript';
+                        tnsscript.async = true;
+                        tnsscript.src = ('https:' == doc.location.protocol ? 'https:' : 'http:') +
+                            '//www.tns-counter.ru/tcounter.js';
+                        var s = doc.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(tnsscript, s);
+                    })(window, this.document,'tnscounter_callback');
+                </script>
+                <noscript>
+                    <img src="//www.tns-counter.ru/V13a****vgtrk_ru/ru/UTF-8/tmsec=radiorus_total/" width="0" height="0" alt="" />
+                </noscript>
+                <!--/ tns-counter.ru -->
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<div class="gallery-container"></div><div class="player">
+    <div class="player-timeline flow-default">
+        <div class="player-timeline-swiper swiper-container">
+            <div class="swiper-wrapper">
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467730" data-itemid="2472703">
+                                                                                                                 <img src="https://cdn-st3.rtr-vesti.ru/vh/pictures/r/194/594/2.jpg" alt="События, факты, комментарии">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">События, факты, комментарии</p>
+                                 <p>Начало в 12:10
+                                                                              <a href="/brand/61244">&quot;Актуально&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467771" data-itemid="2478098">
+                                                                                                                 <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/r/207/459/3.jpg" alt="Коронавирус наступает...">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Коронавирус наступает...</p>
+                                 <p>Начало в 12:11
+                                                                              <a href="/brand/61244">&quot;Актуально&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467769" data-itemid="2478137">
+                                                                                                                 <img src="https://cdn-st4.rtr-vesti.ru/vh/pictures/r/207/458/3.jpg" alt="Поправки в Конституцию: как это будет?">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Поправки в Конституцию: как это будет?</p>
+                                 <p>Начало в 12:19
+                                                                              <a href="/brand/61244">&quot;Актуально&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467765" data-itemid="2478099">
+                                                                                                                 <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/201/900/0.jpg" alt="Программу реновации жилья предложили для всей страны">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Программу реновации жилья предложили для всей страны</p>
+                                 <p>Начало в 12:26
+                                                                              <a href="/brand/61244">&quot;Актуально&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467763" data-itemid="2478119">
+                                                                                                                 <img src="https://cdn-st4.rtr-vesti.ru/vh/pictures/r/207/438/7.jpg" alt="Рубль определённо понравится вкладчикам">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Рубль определённо понравится вкладчикам</p>
+                                 <p>Начало в 12:33
+                                                                              <a href="/brand/61244">&quot;Актуально&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467756" data-itemid="2478061">
+                                                                                                                 <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/r/197/736/5.jpg" alt="Глава МИД ФРГ призвал усилить борьбу с антисемитизмом в стране">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Глава МИД ФРГ призвал усилить борьбу с антисемитизмом в стране</p>
+                                 <p>Начало в 12:39
+                                                                              <a href="/brand/61244">&quot;Актуально&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467755" data-itemid="2478062">
+                                                                                                                 <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/r/207/450/5.jpg" alt="&quot;Новости спорта&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Новости спорта&quot;</p>
+                                 <p>Начало в 12:46
+                                                                              <a href="/brand/61244">&quot;Актуально&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467753" data-itemid="2478063">
+                                                                                                                 <img src="https://cdn-st4.rtr-vesti.ru/vh/pictures/r/207/495/9.jpg" alt="&quot;Актуально&quot; о культуре с Дарьей Седовой">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Актуально&quot; о культуре с Дарьей Седовой</p>
+                                 <p>Начало в 12:52
+                                                                              <a href="/brand/61244">&quot;Актуально&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472704">
+                                                                                     <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/183/779/6.jpg" alt="&quot;Вести&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Вести&quot;</p>
+                                 <p>Начало в 13:00
+                                                                              <a href="/brand/57098">&quot;Вести&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467744" data-itemid="2472705">
+                                                                                                                 <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/r/201/257/7.jpg" alt="Естественная земная радиация, грозы и таинственные взрывы">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Естественная земная радиация, грозы и таинственные взрывы</p>
+                                 <p>Начало в 13:10
+                                                                              <a href="/brand/63253">&quot;Российский радиоуниверситет&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472706">
+                                                                                     <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/183/779/6.jpg" alt="&quot;Вести&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Вести&quot;</p>
+                                 <p>Начало в 14:00
+                                                                              <a href="/brand/57098">&quot;Вести&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467788" data-itemid="2472707">
+                                                                                                                 <img src="https://cdn-st3.rtr-vesti.ru/vh/pictures/r/207/287/8.jpg" alt="День памяти жертв Холокоста">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">День памяти жертв Холокоста</p>
+                                 <p>Начало в 14:10
+                                                                              <a href="/brand/57958">&quot;Действующие лица&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472708">
+                                                                                     <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/183/779/6.jpg" alt="&quot;Вести&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Вести&quot;</p>
+                                 <p>Начало в 15:00
+                                                                              <a href="/brand/57098">&quot;Вести&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472709">
+                                                                                     <img src="https://cdn-st3.rtr-vesti.ru/vh/pictures/r/201/858/6.jpg" alt="&quot;Будьте здоровы&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Будьте здоровы&quot;</p>
+                                 <p>Начало в 15:10
+                                                                              <a href="/brand/63864">&quot;Будьте здоровы&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="video" data-id="1989394" data-itemid="2472710">
+                                                                                                                 <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/r/194/899/7.jpg" alt="Эфир от 27.01.2020 (15:25)">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Эфир от 27.01.2020 (15:25)</p>
+                                 <p>Начало в 15:25
+                                                                              <a href="/brand/63863">&quot;Наши песни &ndash; наша память&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="video" data-id="1989398" data-itemid="2472711">
+                                                                                                                 <img src="https://cdn-st4.rtr-vesti.ru/vh/pictures/r/206/863/9.jpg" alt="Джонатан Свифт&nbsp; &quot;Путешествия Гулливера&quot;. Часть 6-я">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Джонатан Свифт&nbsp; &quot;Путешествия Гулливера&quot;. Часть 6-я</p>
+                                 <p>Начало в 15:30
+                                                                              <a href="/brand/57128">&quot;Литературный сериал&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472712">
+                                                                                     <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/183/779/6.jpg" alt="&quot;Вести&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Вести&quot;</p>
+                                 <p>Начало в 16:00
+                                                                              <a href="/brand/57098">&quot;Вести&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467808" data-itemid="2472713">
+                                                                                                                 <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/202/084/0.jpg" alt="В Комсомольске-на-Амуре из-за нарушений закрыли единственный аэропорт">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">В Комсомольске-на-Амуре из-за нарушений закрыли единственный аэропорт</p>
+                                 <p>Начало в 16:10
+                                                                              <a href="/brand/60510">&quot;Разное время. Радиоканал&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467812" data-itemid="2478118">
+                                                                                                                 <img src="https://cdn-st4.rtr-vesti.ru/vh/pictures/r/207/392/7.jpg" alt="Чита: в заброшенном доме обнаружена многодетная семья">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Чита: в заброшенном доме обнаружена многодетная семья</p>
+                                 <p>Начало в 16:35
+                                                                              <a href="/brand/60510">&quot;Разное время. Радиоканал&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472714">
+                                                                                     <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/183/779/6.jpg" alt="&quot;Вести&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Вести&quot;</p>
+                                 <p>Начало в 17:00
+                                                                              <a href="/brand/57098">&quot;Вести&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467816" data-itemid="2472715">
+                                                                                                                 <img src="https://cdn-st3.rtr-vesti.ru/vh/pictures/r/153/955/0.jpg" alt="Реабилитация и адаптация бездомных">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Реабилитация и адаптация бездомных</p>
+                                 <p>Начало в 17:10
+                                                                              <a href="/brand/60510">&quot;Разное время. Радиоканал&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467818" data-itemid="2478079">
+                                                                                                                 <img src="https://cdn-st4.rtr-vesti.ru/vh/pictures/r/212/379.jpg" alt="Ульяновск: к юбилею Победы бесплатно покажут 75 фильмов о войне">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Ульяновск: к юбилею Победы бесплатно покажут 75 фильмов о войне</p>
+                                 <p>Начало в 17:45
+                                                                              <a href="/brand/60510">&quot;Разное время. Радиоканал&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472716">
+                                                                                     <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/183/779/6.jpg" alt="&quot;Вести&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Вести&quot;</p>
+                                 <p>Начало в 18:00
+                                                                              <a href="/brand/57098">&quot;Вести&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472717">
+                                                                                     <img src="https://cdn-st3.rtr-vesti.ru/vh/pictures/r/174/427/0.jpg" alt="&quot;Поверь в мечту&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Поверь в мечту&quot;</p>
+                                 <p>Начало в 18:10
+                                                                              <a href="/brand/64673">&quot;Поверь в мечту&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467801" data-itemid="2472718">
+                                                                                                                 <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/207/492/8.jpg" alt="Масленица как акт современного искусства">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Масленица как акт современного искусства</p>
+                                 <p>Начало в 18:35
+                                                                              <a href="/brand/63766">&quot;Культурный повод&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472719">
+                                                                                     <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/183/779/6.jpg" alt="&quot;Вести&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Вести&quot;</p>
+                                 <p>Начало в 19:00
+                                                                              <a href="/brand/57098">&quot;Вести&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="video" data-id="1989493" data-itemid="2472720">
+                                                                                                                 <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/205/157/2.jpg" alt="События, факты, комментарии...">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">События, факты, комментарии...</p>
+                                 <p>Начало в 19:10
+                                                                              <a href="/brand/63802">&quot;Вечерняя смена&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467834" data-itemid="2478121">
+                                                                                                                 <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/r/207/472/1.jpg" alt="Нацисты спланировали блокаду Ленинграда в мае 1941 года">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Нацисты спланировали блокаду Ленинграда в мае 1941 года</p>
+                                 <p>Начало в 19:12
+                                                                              <a href="/brand/63802">&quot;Вечерняя смена&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467838" data-itemid="2478122">
+                                                                                                                 <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/207/262/4.jpg" alt="В Польше прошла церемония  по случаю 75-летия освобождения Красной армией узников Освенцима">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">В Польше прошла церемония  по случаю 75-летия освобождения Красной армией узников Освенцима</p>
+                                 <p>Начало в 19:20
+                                                                              <a href="/brand/63802">&quot;Вечерняя смена&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467846" data-itemid="2478123">
+                                                                                                                 <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/r/207/459/3.jpg" alt="Растёт число жертв нового вируса">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Растёт число жертв нового вируса</p>
+                                 <p>Начало в 19:32
+                                                                              <a href="/brand/63802">&quot;Вечерняя смена&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467849" data-itemid="2478064">
+                                                                                                                 <img src="https://cdn-st4.rtr-vesti.ru/vh/pictures/r/207/373/9.jpg" alt="Падение рынка акций ускорилось на фоне ухудшения ситуации с коронавирусом">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Падение рынка акций ускорилось на фоне ухудшения ситуации с коронавирусом</p>
+                                 <p>Начало в 19:42
+                                                                              <a href="/brand/63802">&quot;Вечерняя смена&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467852" data-itemid="2478081">
+                                                                                                                 <img src="https://cdn-st3.rtr-vesti.ru/vh/pictures/r/207/510/6.jpg" alt="В США погиб легендарный баскетболист Коби Брайант">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">В США погиб легендарный баскетболист Коби Брайант</p>
+                                 <p>Начало в 19:50
+                                                                              <a href="/brand/63802">&quot;Вечерняя смена&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472721">
+                                                                                     <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/183/779/6.jpg" alt="&quot;Вести&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Вести&quot;</p>
+                                 <p>Начало в 20:00
+                                                                              <a href="/brand/57098">&quot;Вести&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="audio" data-id="2467862" data-itemid="2472722">
+                                                                                                                 <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/476/808.jpg" alt="Гость рубрики &quot;Культбригада&quot; &ndash;  писатель Вадим Левенталь">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Гость рубрики &quot;Культбригада&quot; &ndash;  писатель Вадим Левенталь</p>
+                                 <p>Начало в 20:10
+                                                                              <a href="/brand/63802">&quot;Вечерняя смена&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472723">
+                                                                                     <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/183/779/6.jpg" alt="&quot;Вести&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Вести&quot;</p>
+                                 <p>Начало в 21:00
+                                                                              <a href="/brand/57098">&quot;Вести&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="video" data-id="1989550" data-itemid="2472724">
+                                                                                                                 <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/160/787/6.jpg" alt="Эфир от 27.01.2020 (21:10)">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Эфир от 27.01.2020 (21:10)</p>
+                                 <p>Начало в 21:10
+                                                                              <a href="/brand/57067">&quot;Шинель&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="video" data-id="1989567" data-itemid="2472725">
+                                                                                                                 <div class="no-photo"></div>
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Эфир от 27.01.2020 (21:35)</p>
+                                 <p>Начало в 21:35
+                                                                              <a href="/brand/57273">&quot;Это интересно&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472726">
+                                                                                     <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/183/779/6.jpg" alt="&quot;Вести&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Вести&quot;</p>
+                                 <p>Начало в 22:00
+                                                                              <a href="/brand/57098">&quot;Вести&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="video" data-id="1989573" data-itemid="2472727">
+                                                                                                                 <img src="https://cdn-st2.rtr-vesti.ru/vh/pictures/r/163/101/7.jpg" alt="Эфир от 27.01.2020 (22:10)">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Эфир от 27.01.2020 (22:10)</p>
+                                 <p>Начало в 22:10
+                                                                              <a href="/brand/59797">&quot;Стадион&quot;.  Спортивная программа</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="video" data-id="1989398" data-itemid="2472728">
+                                                                                                                 <img src="https://cdn-st4.rtr-vesti.ru/vh/pictures/r/206/863/9.jpg" alt="Джонатан Свифт&nbsp; &quot;Путешествия Гулливера&quot;. Часть 6-я">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Джонатан Свифт&nbsp; &quot;Путешествия Гулливера&quot;. Часть 6-я</p>
+                                 <p>Начало в 22:30
+                                                                              <a href="/brand/57128">&quot;Литературный сериал&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                     <div class="timeline-episode" data-itemid="2472729">
+                                                                                     <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/183/779/6.jpg" alt="&quot;Вести&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Вести&quot;</p>
+                                 <p>Начало в 23:00
+                                                                              <a href="/brand/57098">&quot;Вести&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-type="video" data-id="1989587" data-itemid="2472730">
+                                                                                                                 <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/124/666/0.jpg" alt="Эфир от 27.01.2020 (23:10)">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Эфир от 27.01.2020 (23:10)</p>
+                                 <p>Начало в 23:10
+                                                                              <a href="/brand/63147">&quot;Джазовое настроение&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                    <div class="timeline-episode inair active-play" data-itemid="2472731"
+                                                             >
+                                                                                     <img src="https://cdn-st1.rtr-vesti.ru/vh/pictures/r/183/779/6.jpg" alt="&quot;Вести&quot;">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">&quot;Вести&quot;</p>
+                                 <p>Начало в 00:00
+                                                                              <a href="/brand/57098">&quot;Вести&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                                    <div class="timeline-item swiper-slide">
+                                                                                    <div class="timeline-episode" data-itemid="2472732">
+                                                                                                                 <img src="https://cdn-st4.rtr-vesti.ru/vh/pictures/r/206/717/5.jpg" alt="Фёдор Достоевский  &quot;Неточка Незванова&quot;. Серия 12-я">
+                                                          <div class="timeline-episode__info">
+                                 <p class="start">Фёдор Достоевский  &quot;Неточка Незванова&quot;. Серия 12-я</p>
+                                 <p>Начало в 00:10
+                                                                              <a href="/brand/57128">&quot;Литературный сериал&quot;</a>
+                                                                      </p>
+                             </div>
+                             <div class="equaliser">
+                                 <div class="bar first"></div>
+                                 <div class="bar second"></div>
+                                 <div class="bar third"></div>
+                                 <div class="bar fourth"></div>
+                                 <div class="bar fifth"></div>
+                             </div>
+                             <div class="start"></div>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+        <div class="onair">Прямой эфир</div>
+    </div>
+    <div class="player-container">
+        <div class="radio-flow">
+            <div class="flow active" data-type="live" data-id="58648" data-flow="default">Радио России</div>
+            <div class="flow" data-type="live" data-id="58149" data-flow="fm">Радио России FM</div>
+        </div>
+        <div class="player-wrapper">
+            <iframe src="https://player.vgtrk.com/iframe/live/id/58648/skin/radiorus_audio" allow="autoplay"></iframe>
+        </div>
+        <div class="player-programs">
+            <p>Программа</p>
+        </div>
+    </div>
+
+    <div class="player-preload">
+    </div>
+</div>    <script type="text/javascript" src="/js/main.min.js?v=0.0.34"></script>
+
+<!-- Adv slot 262 [ -->
+
+
+    
+        
+        
+        
+                <!-- vesti.ru, vesti7.ru, russia.tv, live.russia.tv, tvkultura.ru, vgtrk.com, nauka.vesti.ru, hitech.vesti.ru, auto.vesti.ru, rtr-planeta.com, radiomayak.ru, radiovesti.ru, radiorus.ru, cultradio.ru, player.vgtrk.com -->
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(55382026, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+        ecommerce:"dataLayer"
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/55382026" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+        
+        
+    
+
+
+<!-- ] Adv slot 262 -->
+</body>
+</html>
