@@ -17,13 +17,14 @@ package main
 
 import (
 	"flag"
-	"github.com/gorilla/feeds"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"regexp"
 	"strconv"
 	"time"
+
+	"github.com/gorilla/feeds"
 )
 
 type subst struct {
@@ -32,7 +33,7 @@ type subst struct {
 }
 
 var (
-	substitutes = []subst{
+	substitutes = []subst{ // these need to be changed to show up properly in the feed
 		{from: `&quot;`, to: `"`},
 		{from: `&ndash;`, to: `–`},
 	}
@@ -147,9 +148,17 @@ func getPage(pageUrl string) []byte {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	page = cleanText(page)
+
+	return page
+}
+
+// cleanText replaces HTML-encoded symbols with proper UTF
+func cleanText(b []byte) []byte {
 	for _, sub := range substitutes {
 		re := regexp.MustCompile(sub.from)
-		page = re.ReplaceAll(page, []byte(sub.to))
+		b = re.ReplaceAll(b, []byte(sub.to))
 	}
-	return page
+	return b
 }
