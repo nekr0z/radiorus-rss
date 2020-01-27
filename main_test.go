@@ -37,22 +37,6 @@ func helperLoadBytes(t *testing.T, name string) []byte {
 	return bytes
 }
 
-func TestCleanText(t *testing.T) {
-	about := helperLoadBytes(t, "about")
-	actual := cleanText(about)
-	golden := filepath.Join("testdata", t.Name()+".golden")
-	if *update {
-		if err := ioutil.WriteFile(golden, actual, 0644); err != nil {
-			t.Fatal(err)
-		}
-	}
-	expected, _ := ioutil.ReadFile(golden)
-
-	if !bytes.Equal(actual, expected) {
-		t.Fail()
-	}
-}
-
 func TestFeed(t *testing.T) {
 	page := helperLoadBytes(t, "episodes")
 	page = cleanText(page)
