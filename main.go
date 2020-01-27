@@ -51,7 +51,6 @@ var (
 		Created: time.Now(),
 	}
 	outputPath, programNumber string
-	err                       error
 )
 
 func main() {
@@ -94,10 +93,11 @@ func main() {
 			dateBytes := episodeDateRe.FindSubmatch(episode)
 			var date [5]int
 			for i, b := range dateBytes[1:] {
-				date[i], err = strconv.Atoi(string(b))
+				d, err := strconv.Atoi(string(b))
 				if err != nil {
 					log.Fatal(err)
 				}
+				date[i] = d
 			}
 			moscow := time.FixedZone("Moscow Time", int((3 * time.Hour).Seconds()))
 			episodeDate := time.Date(date[2], time.Month(date[1]), date[0], date[3], date[4], 0, 0, moscow)
