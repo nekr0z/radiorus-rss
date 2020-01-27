@@ -69,17 +69,22 @@ func main() {
 	describeEpisodes(feed)
 
 	feed.Created = time.Now()
-	outputFile := outputPath + "radiorus-" + programNumber + ".rss"
 
-	writeFeed(feed, outputFile)
+	output := createFeed(feed)
+
+	outputFile := outputPath + "radiorus-" + programNumber + ".rss"
+	writeFile(output, outputFile)
 }
 
-func writeFeed(feed *feeds.Feed, filename string) {
+func createFeed(feed *feeds.Feed) []byte {
 	rss, err := feed.ToRss()
 	if err != nil {
 		log.Fatal(err)
 	}
-	output := []byte(rss)
+	return []byte(rss)
+}
+
+func writeFile(output []byte, filename string) {
 	if err := ioutil.WriteFile(filename, output, 0644); err != nil {
 		log.Fatal(err)
 	}
