@@ -23,6 +23,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/gorilla/feeds"
@@ -65,10 +66,15 @@ func main() {
 	}
 
 	populateFeed(feed, page)
-	describeFeed(feed)
-	describeEpisodes(feed)
+
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go describeFeed(feed, &wg)
+	wg.Add(len(feed.Items))
+	go describeEpisodes(feed, &wg)
 
 	feed.Created = time.Now()
+	wg.Wait()
 
 	output := createFeed(feed)
 
@@ -146,7 +152,8 @@ func populateFeed(feed *feeds.Feed, page []byte) {
 	}
 }
 
-func describeFeed(feed *feeds.Feed) {
+func describeFeed(feed *feeds.Feed, wg *sync.WaitGroup) {
+	defer wg.Done()
 	programAboutUrl := strings.TrimSuffix(feed.Link.Href, "episodes") + "about"
 	programAboutPage := getPage(programAboutUrl)
 	programAbout := programAboutRe.FindSubmatch(programAboutPage)[1]
@@ -154,14 +161,19 @@ func describeFeed(feed *feeds.Feed) {
 	feed.Description = string(re.ReplaceAll(programAbout, []byte(``)))
 }
 
-func describeEpisodes(feed *feeds.Feed) {
+func describeEpisodes(feed *feeds.Feed, wg *sync.WaitGroup) {
 	for _, item := range feed.Items {
-		page := getPage(item.Link.Href)
-		item.Description = describeEpisode(page)
+		describeEpisode(item, wg)
 	}
 }
 
-func describeEpisode(page []byte) string {
+func describeEpisode(item *feeds.Item, wg *sync.WaitGroup) {
+	defer wg.Done()
+	page := getPage(item.Link.Href)
+	item.Description = processEpisodeDesc(page)
+}
+
+func processEpisodeDesc(page []byte) string {
 	return string(episodeDescRe.FindSubmatch(page)[1])
 }
 
