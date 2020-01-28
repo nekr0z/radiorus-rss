@@ -24,6 +24,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"sync"
@@ -50,12 +51,17 @@ func helperLoadBytes(t testing.TB, name string) []byte {
 }
 
 func TestFeed(t *testing.T) {
-	page := helperLoadBytes(t, "episodes")
-	page = cleanText(page)
+	var page []byte
 
 	feed := &feeds.Feed{
 		Link: &feeds.Link{Href: "http://www.radiorus.ru/brand/57083/episodes"},
 	}
+
+	err := populateFeed(feed, page)
+	assertStringContains(t, fmt.Sprint(err), "bad programme")
+
+	page = helperLoadBytes(t, "episodes")
+	page = cleanText(page)
 
 	if err := populateFeed(feed, page); err != nil {
 		t.Fatal(err)
@@ -115,6 +121,25 @@ func TestMissingFeedDesc(t *testing.T) {
 	processURL(fmt.Sprintf("%s/brand/57083/episodes", server.URL))
 
 	assertStringContains(t, buf.String(), fmt.Sprintf("could not find programme description on page %v: %v", server.URL+"/brand/57083/about", errCantParse))
+}
+
+func TestMissingFeed(t *testing.T) {
+	server := helperMockServer(t)
+	defer helperCleanupServer(t)
+
+	if os.Getenv("DO_CRASH") == "1" {
+		processURL(fmt.Sprintf("%s/brand/57084/episodes", server.URL))
+		return
+	}
+
+	cmd := exec.Command(os.Args[0], "-test.run=TestMissingFeed")
+	cmd.Env = append(os.Environ(), "DO_CRASH=1")
+	out, err := cmd.CombinedOutput()
+	if e, ok := err.(*exec.ExitError); !(ok && !e.Success()) {
+		t.Fatalf("process ran with err %v, want exit status 1", err)
+	}
+
+	assertStringContains(t, string(out), fmt.Sprint("84/episodes: bad programme page"))
 }
 
 func TestServedFeed(t *testing.T) {

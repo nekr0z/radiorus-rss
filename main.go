@@ -122,7 +122,7 @@ func getFeed(url string) (feed *feeds.Feed) {
 func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 	titleMatch := programNameRe.FindSubmatch(page)
 	if len(titleMatch) < 1 {
-		return fmt.Errorf("bad program page")
+		return fmt.Errorf("bad programme page")
 	}
 
 	feed.Title = string(titleMatch[1])
