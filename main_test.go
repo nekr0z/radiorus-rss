@@ -18,14 +18,24 @@ package main
 import (
 	"bytes"
 	"flag"
+	"fmt"
 	"io/ioutil"
+	"net/http"
+	"net/http/httptest"
+	"os"
 	"path/filepath"
+	"sync"
 	"testing"
 
 	"github.com/gorilla/feeds"
 )
 
-var update = flag.Bool("update", false, "update .golden files")
+var (
+	update  = flag.Bool("update", false, "update .golden files")
+	fakeURL = `**localhost**`
+)
+
+const pth = "testdata/brand/57083"
 
 func helperLoadBytes(t *testing.T, name string) []byte {
 	t.Helper()
@@ -56,13 +66,62 @@ func TestFeed(t *testing.T) {
 	actual := createFeed(feed)
 	golden := filepath.Join("testdata", t.Name()+".golden")
 	if *update {
-		if err := ioutil.WriteFile(golden, actual, 0644); err != nil {
-			t.Fatal(err)
-		}
+		writeFile(actual, golden)
 	}
 	expected, _ := ioutil.ReadFile(golden)
 
 	if !bytes.Equal(actual, expected) {
 		t.Fail()
+	}
+}
+
+func TestServedFeed(t *testing.T) {
+	server := helperMockServer(t)
+	defer helperCleanupServer(t)
+
+	feed := getFeed(fmt.Sprintf("%s/brand/57083/episodes", server.URL))
+
+	var wg sync.WaitGroup
+	wg.Add(1)
+	describeFeed(feed, &wg)
+	wg.Wait()
+
+	actual := bytes.ReplaceAll(createFeed(feed), []byte(server.URL), []byte(fakeURL))
+	golden := filepath.Join("testdata", t.Name()+".golden")
+	if *update {
+		writeFile(actual, golden)
+	}
+	expected, _ := ioutil.ReadFile(golden)
+
+	if !bytes.Equal(actual, expected) {
+		t.Fail()
+	}
+}
+
+func helperMockServer(t *testing.T) *httptest.Server {
+	t.Helper()
+
+	fileserver := http.FileServer(http.Dir("testdata"))
+	server := httptest.NewServer(fileserver)
+
+	episodes := helperLoadBytes(t, "episodes")
+	writeFile(episodes, filepath.Join(pth, "episodes"))
+
+	about := helperLoadBytes(t, "about")
+	writeFile(about, filepath.Join(pth, "about"))
+
+	return server
+}
+
+func helperCleanupServer(t *testing.T) {
+	t.Helper()
+	helperCleanupFile(t, "episodes")
+	helperCleanupFile(t, "about")
+}
+
+func helperCleanupFile(t *testing.T, name string) {
+	t.Helper()
+	if err := os.Remove(filepath.Join(pth, name)); err != nil {
+		t.Fatal(err)
 	}
 }

@@ -52,6 +52,8 @@ var (
 	episodeUrlRe   = regexp.MustCompile(`<a href="/brand/(.+?)?" class="title`)
 
 	outputPath, programNumber string
+
+	errBadEpisode = fmt.Errorf("bad episode")
 )
 
 func main() {
@@ -59,22 +61,27 @@ func main() {
 	flag.StringVar(&programNumber, "brand", "57083", "brand number (defaults to Aerostat)")
 	flag.Parse()
 
-	programUrl := "http://www.radiorus.ru/brand/" + programNumber + "/episodes"
+	url := "http://www.radiorus.ru/brand/" + programNumber + "/episodes"
 
-	feed := getFeed(programUrl)
+	feed := processURL(url)
+
+	feed.Created = time.Now()
+	output := createFeed(feed)
+	outputFile := outputPath + "radiorus-" + programNumber + ".rss"
+
+	writeFile(output, outputFile)
+}
+
+func processURL(url string) *feeds.Feed {
+	feed := getFeed(url)
 
 	var wg sync.WaitGroup
 	wg.Add(1)
 	go describeFeed(feed, &wg)
 	describeEpisodes(feed)
-
-	feed.Created = time.Now()
 	wg.Wait()
 
-	output := createFeed(feed)
-
-	outputFile := outputPath + "radiorus-" + programNumber + ".rss"
-	writeFile(output, outputFile)
+	return feed
 }
 
 func createFeed(feed *feeds.Feed) []byte {
@@ -98,9 +105,12 @@ func getFeed(url string) (feed *feeds.Feed) {
 
 	for {
 		page := getPage(url)
-		if err := populateFeed(feed, page); err != nil {
+		if err := populateFeed(feed, page); err == errBadEpisode {
 			time.Sleep(15 * 60 * time.Second)
 			continue
+		} else if err != nil {
+			err = fmt.Errorf("could not process %v: %w", url, err)
+			log.Fatal(err)
 		}
 		break
 	}
@@ -109,7 +119,12 @@ func getFeed(url string) (feed *feeds.Feed) {
 }
 
 func populateFeed(feed *feeds.Feed, page []byte) (err error) {
-	feed.Title = string(programNameRe.FindSubmatch(page)[1])
+	titleMatch := programNameRe.FindSubmatch(page)
+	if len(titleMatch) < 1 {
+		return fmt.Errorf("bad program page")
+	}
+
+	feed.Title = string(titleMatch[1])
 	programImage := programImageRe.FindSubmatch(page)
 	feed.Image = &feeds.Image{
 		Link:  feed.Link.Href,
@@ -121,7 +136,7 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 
 	for _, episode := range episodes {
 		if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
-			return fmt.Errorf("bad episode")
+			return errBadEpisode
 		}
 		episodeUrl := "http://www.radiorus.ru/brand/" + string(episodeUrlRe.FindSubmatch(episode)[1])
 		episodeTitle := string(episodeTitleRe.FindSubmatch(episode)[1])
