@@ -24,7 +24,6 @@ import (
 	"net/http/httptest"
 	"os"
 	"path/filepath"
-	"sync"
 	"testing"
 
 	"github.com/gorilla/feeds"
@@ -79,12 +78,7 @@ func TestServedFeed(t *testing.T) {
 	server := helperMockServer(t)
 	defer helperCleanupServer(t)
 
-	feed := getFeed(fmt.Sprintf("%s/brand/57083/episodes", server.URL))
-
-	var wg sync.WaitGroup
-	wg.Add(1)
-	describeFeed(feed, &wg)
-	wg.Wait()
+	feed := processURL(fmt.Sprintf("%s/brand/57083/episodes", server.URL))
 
 	actual := bytes.ReplaceAll(createFeed(feed), []byte(server.URL), []byte(fakeURL))
 	golden := filepath.Join("testdata", t.Name()+".golden")

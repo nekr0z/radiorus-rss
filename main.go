@@ -54,6 +54,7 @@ var (
 	outputPath, programNumber string
 
 	errBadEpisode = fmt.Errorf("bad episode")
+	errCantParse  = fmt.Errorf("could not parse page")
 )
 
 func main() {
@@ -194,11 +195,19 @@ func describeEpisodes(feed *feeds.Feed) {
 func describeEpisode(item *feeds.Item, wg *sync.WaitGroup) {
 	defer wg.Done()
 	page := getPage(item.Link.Href)
-	item.Description = processEpisodeDesc(page)
+	desc, err := processEpisodeDesc(page)
+	if err != nil {
+		log.Printf("could not find episode description on page %v: %v", item.Link.Href, err)
+	}
+	item.Description = desc
 }
 
-func processEpisodeDesc(page []byte) string {
-	return string(episodeDescRe.FindSubmatch(page)[1])
+func processEpisodeDesc(page []byte) (string, error) {
+	matches := episodeDescRe.FindSubmatch(page)
+	if len(matches) < 2 {
+		return "", errCantParse
+	}
+	return string(matches[1]), nil
 }
 
 func getPage(pageUrl string) []byte {
