@@ -62,7 +62,7 @@ func main() {
 	flag.StringVar(&programNumber, "brand", "57083", "brand number (defaults to Aerostat)")
 	flag.Parse()
 
-	url := "http://www.radiorus.ru/brand/" + programNumber + "/episodes"
+	url := "https://www.radiorus.ru/brand/" + programNumber + "/episodes"
 
 	feed := processURL(url)
 
@@ -156,7 +156,7 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 		episodeDate := time.Date(date[2], time.Month(date[1]), date[0], date[3], date[4], 0, 0, moscow)
 
 		feed.Add(&feeds.Item{
-			Id:    episodeUrl,
+			Id:    episodeID(episodeUrl),
 			Link:  &feeds.Link{Href: episodeUrl},
 			Title: episodeTitle,
 			Enclosure: &feeds.Enclosure{
@@ -245,4 +245,13 @@ func cleanText(b []byte) []byte {
 // episodeURLPrefix derives common episode URL prefix from programme page URL
 func episodeURLPrefix(url string) string {
 	return strings.Split(url, "/brand/")[0] + "/brand/"
+}
+
+// episodeID generates episode ID from episode URL,
+// changes "https://" to "http://" for backwards compatibility purposes
+func episodeID(url string) string {
+	if strings.HasPrefix(url, "https://") {
+		return "http://" + strings.TrimPrefix(url, "https://")
+	}
+	return url
 }

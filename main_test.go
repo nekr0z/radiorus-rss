@@ -206,3 +206,23 @@ func TestEpisodeURLPrefix(t *testing.T) {
 		t.Fatalf("got %v, want %v", got, want)
 	}
 }
+
+func TestEpisodeID(t *testing.T) {
+	type testval struct {
+		url string
+		id  string
+	}
+
+	var tests = []testval{
+		{"http://www.radiorus.ru/brand/57083/episode/foo", "http://www.radiorus.ru/brand/57083/episode/foo"},
+		{"https://www.radiorus.ru/brand/57083/episode/foo", "http://www.radiorus.ru/brand/57083/episode/foo"},
+	}
+
+	for _, test := range tests {
+		got := episodeID(test.url)
+		want := test.id
+		if got != want {
+			t.Error("want:", want, "got:", got)
+		}
+	}
+}
