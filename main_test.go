@@ -45,7 +45,9 @@ func TestFeed(t *testing.T) {
 		Link: &feeds.Link{Href: "http://www.radiorus.ru/brand/57083/episodes"},
 	}
 
-	populateFeed(feed, page)
+	if err := populateFeed(feed, page); err != nil {
+		t.Fatal(err)
+	}
 
 	page = helperLoadBytes(t, "about")
 	page = cleanText(page)
