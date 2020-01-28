@@ -20,10 +20,13 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"strings"
+	"sync"
 	"testing"
 
 	"github.com/gorilla/feeds"
@@ -71,6 +74,30 @@ func TestFeed(t *testing.T) {
 
 	if !bytes.Equal(actual, expected) {
 		t.Fail()
+	}
+}
+
+func TestMissingEpisode(t *testing.T) {
+	server := helperMockServer(t)
+	defer helperCleanupServer(t)
+
+	item := feeds.Item{
+		Id:   "aabb",
+		Link: &feeds.Link{Href: fmt.Sprintf("%s/brand/none", server.URL)},
+	}
+
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() { log.SetOutput(os.Stderr) }()
+
+	var wg sync.WaitGroup
+	wg.Add(1)
+	describeEpisode(&item, &wg)
+
+	got := string(buf.Bytes())
+	want := fmt.Sprintf("could not find episode description on page %v: %v", item.Link.Href, errCantParse)
+	if !strings.Contains(got, want) {
+		t.Fatalf("got %v, want %v", got, want)
 	}
 }
 
@@ -135,6 +162,6 @@ func TestEpisodeURLPrefix(t *testing.T) {
 	want := "http://www.radiorus.ru/brand/"
 
 	if got != want {
-		t.Fatal(fmt.Sprintf("got %v, want %v", got, want))
+		t.Fatalf("got %v, want %v", got, want)
 	}
 }
