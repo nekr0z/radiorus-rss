@@ -17,6 +17,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -60,12 +61,7 @@ func main() {
 
 	programUrl := "http://www.radiorus.ru/brand/" + programNumber + "/episodes"
 
-	page := getPage(programUrl)
-	feed := &feeds.Feed{
-		Link: &feeds.Link{Href: programUrl},
-	}
-
-	populateFeed(feed, page)
+	feed := getFeed(programUrl)
 
 	var wg sync.WaitGroup
 	wg.Add(1)
@@ -95,60 +91,66 @@ func writeFile(output []byte, filename string) {
 	}
 }
 
-func populateFeed(feed *feeds.Feed, page []byte) {
+func getFeed(url string) (feed *feeds.Feed) {
+	feed = &feeds.Feed{
+		Link: &feeds.Link{Href: url},
+	}
+
 	for {
-		feed.Title = string(programNameRe.FindSubmatch(page)[1])
-		programImage := programImageRe.FindSubmatch(page)
-		feed.Image = &feeds.Image{
-			Link:  feed.Link.Href,
-			Url:   string(programImage[2]),
-			Title: string(programImage[4]),
-		}
-
-		episodes := episodeRe.FindAll(page, -1)
-
-		badFeed := false
-
-		for _, episode := range episodes {
-			if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
-				badFeed = true
-				break
-			}
-			episodeUrl := "http://www.radiorus.ru/brand/" + string(episodeUrlRe.FindSubmatch(episode)[1])
-			episodeTitle := string(episodeTitleRe.FindSubmatch(episode)[1])
-			episodeAudioUrl := "https://audio.vgtrk.com/download?id=" + string(episodeAudioRe.FindSubmatch(episode)[1])
-			dateBytes := episodeDateRe.FindSubmatch(episode)
-			var date [5]int
-			for i, b := range dateBytes[1:] {
-				d, err := strconv.Atoi(string(b))
-				if err != nil {
-					log.Fatal(err)
-				}
-				date[i] = d
-			}
-			moscow := time.FixedZone("Moscow Time", int((3 * time.Hour).Seconds()))
-			episodeDate := time.Date(date[2], time.Month(date[1]), date[0], date[3], date[4], 0, 0, moscow)
-
-			feed.Add(&feeds.Item{
-				Id:    episodeUrl,
-				Link:  &feeds.Link{Href: episodeUrl},
-				Title: episodeTitle,
-				Enclosure: &feeds.Enclosure{
-					Url:    episodeAudioUrl,
-					Length: "1024",
-					Type:   "audio/mpeg",
-				},
-				Created: episodeDate,
-			})
-		}
-
-		if badFeed {
-			log.Println("Page looks strange. Episode in progress? Will wait for 15 minutes and try again...")
+		page := getPage(url)
+		if err := populateFeed(feed, page); err != nil {
 			time.Sleep(15 * 60 * time.Second)
 			continue
 		}
 		break
 	}
+
+	return feed
+}
+
+func populateFeed(feed *feeds.Feed, page []byte) (err error) {
+	feed.Title = string(programNameRe.FindSubmatch(page)[1])
+	programImage := programImageRe.FindSubmatch(page)
+	feed.Image = &feeds.Image{
+		Link:  feed.Link.Href,
+		Url:   string(programImage[2]),
+		Title: string(programImage[4]),
+	}
+
+	episodes := episodeRe.FindAll(page, -1)
+
+	for _, episode := range episodes {
+		if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
+			return fmt.Errorf("bad episode")
+		}
+		episodeUrl := "http://www.radiorus.ru/brand/" + string(episodeUrlRe.FindSubmatch(episode)[1])
+		episodeTitle := string(episodeTitleRe.FindSubmatch(episode)[1])
+		episodeAudioUrl := "https://audio.vgtrk.com/download?id=" + string(episodeAudioRe.FindSubmatch(episode)[1])
+		dateBytes := episodeDateRe.FindSubmatch(episode)
+		var date [5]int
+		for i, b := range dateBytes[1:] {
+			d, err := strconv.Atoi(string(b))
+			if err != nil {
+				log.Fatal(err)
+			}
+			date[i] = d
+		}
+		moscow := time.FixedZone("Moscow Time", int((3 * time.Hour).Seconds()))
+		episodeDate := time.Date(date[2], time.Month(date[1]), date[0], date[3], date[4], 0, 0, moscow)
+
+		feed.Add(&feeds.Item{
+			Id:    episodeUrl,
+			Link:  &feeds.Link{Href: episodeUrl},
+			Title: episodeTitle,
+			Enclosure: &feeds.Enclosure{
+				Url:    episodeAudioUrl,
+				Length: "1024",
+				Type:   "audio/mpeg",
+			},
+			Created: episodeDate,
+		})
+	}
+	return nil
 }
 
 func describeFeed(feed *feeds.Feed, wg *sync.WaitGroup) {
