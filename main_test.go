@@ -36,7 +36,7 @@ var (
 
 const pth = "testdata/brand/57083"
 
-func helperLoadBytes(t *testing.T, name string) []byte {
+func helperLoadBytes(t testing.TB, name string) []byte {
 	t.Helper()
 	path := filepath.Join("testdata", name)
 	bytes, err := ioutil.ReadFile(path)
@@ -92,7 +92,16 @@ func TestServedFeed(t *testing.T) {
 	}
 }
 
-func helperMockServer(t *testing.T) *httptest.Server {
+func BenchmarkServedFeed(b *testing.B) {
+	server := helperMockServer(b)
+	defer helperCleanupServer(b)
+
+	for n := 0; n < b.N; n++ {
+		processURL(fmt.Sprintf("%s/brand/57083/episodes", server.URL))
+	}
+}
+
+func helperMockServer(t testing.TB) *httptest.Server {
 	t.Helper()
 
 	fileserver := http.FileServer(http.Dir("testdata"))
@@ -107,13 +116,13 @@ func helperMockServer(t *testing.T) *httptest.Server {
 	return server
 }
 
-func helperCleanupServer(t *testing.T) {
+func helperCleanupServer(t testing.TB) {
 	t.Helper()
 	helperCleanupFile(t, "episodes")
 	helperCleanupFile(t, "about")
 }
 
-func helperCleanupFile(t *testing.T, name string) {
+func helperCleanupFile(t testing.TB, name string) {
 	t.Helper()
 	if err := os.Remove(filepath.Join(pth, name)); err != nil {
 		t.Fatal(err)
