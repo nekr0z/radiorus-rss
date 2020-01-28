@@ -163,7 +163,7 @@ func describeFeed(feed *feeds.Feed, wg *sync.WaitGroup) {
 
 func describeEpisodes(feed *feeds.Feed, wg *sync.WaitGroup) {
 	for _, item := range feed.Items {
-		describeEpisode(item, wg)
+		go describeEpisode(item, wg)
 	}
 }
 
