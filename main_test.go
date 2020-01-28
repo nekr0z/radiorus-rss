@@ -125,3 +125,13 @@ func helperCleanupFile(t *testing.T, name string) {
 		t.Fatal(err)
 	}
 }
+
+func TestEpisodeURLPrefix(t *testing.T) {
+	url := "http://www.radiorus.ru/brand/57083/episodes"
+	got := episodeURLPrefix(url)
+	want := "http://www.radiorus.ru/brand/"
+
+	if got != want {
+		t.Fatal(fmt.Sprintf("got %v, want %v", got, want))
+	}
+}

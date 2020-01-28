@@ -133,12 +133,13 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 	}
 
 	episodes := episodeRe.FindAll(page, -1)
+	urlPrefix := episodeURLPrefix(feed.Link.Href)
 
 	for _, episode := range episodes {
 		if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
 			return errBadEpisode
 		}
-		episodeUrl := "http://www.radiorus.ru/brand/" + string(episodeUrlRe.FindSubmatch(episode)[1])
+		episodeUrl := urlPrefix + string(episodeUrlRe.FindSubmatch(episode)[1])
 		episodeTitle := string(episodeTitleRe.FindSubmatch(episode)[1])
 		episodeAudioUrl := "https://audio.vgtrk.com/download?id=" + string(episodeAudioRe.FindSubmatch(episode)[1])
 		dateBytes := episodeDateRe.FindSubmatch(episode)
@@ -223,4 +224,9 @@ func cleanText(b []byte) []byte {
 		b = re.ReplaceAll(b, []byte(sub.to))
 	}
 	return b
+}
+
+// episodeURLPrefix derives common episode URL prefix from programme page URL
+func episodeURLPrefix(url string) string {
+	return strings.Split(url, "/brand/")[0] + "/brand/"
 }
