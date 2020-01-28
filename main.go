@@ -70,8 +70,7 @@ func main() {
 	var wg sync.WaitGroup
 	wg.Add(1)
 	go describeFeed(feed, &wg)
-	wg.Add(len(feed.Items))
-	go describeEpisodes(feed, &wg)
+	describeEpisodes(feed)
 
 	feed.Created = time.Now()
 	wg.Wait()
@@ -161,10 +160,13 @@ func describeFeed(feed *feeds.Feed, wg *sync.WaitGroup) {
 	feed.Description = string(re.ReplaceAll(programAbout, []byte(``)))
 }
 
-func describeEpisodes(feed *feeds.Feed, wg *sync.WaitGroup) {
+func describeEpisodes(feed *feeds.Feed) {
+	var wg sync.WaitGroup
 	for _, item := range feed.Items {
-		go describeEpisode(item, wg)
+		wg.Add(1)
+		go describeEpisode(item, &wg)
 	}
+	wg.Wait()
 }
 
 func describeEpisode(item *feeds.Item, wg *sync.WaitGroup) {
