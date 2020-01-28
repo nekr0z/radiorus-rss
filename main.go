@@ -172,15 +172,22 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 
 func describeFeed(feed *feeds.Feed, wg *sync.WaitGroup) {
 	defer wg.Done()
-	programAboutUrl := strings.TrimSuffix(feed.Link.Href, "episodes") + "about"
-	page := getPage(programAboutUrl)
-	feed.Description = processFeedDesc(page)
+	url := strings.TrimSuffix(feed.Link.Href, "episodes") + "about"
+	page := getPage(url)
+	desc, err := processFeedDesc(page)
+	if err != nil {
+		log.Printf("could not find programme description on page %v: %v", url, err)
+	}
+	feed.Description = desc
 }
 
-func processFeedDesc(page []byte) string {
-	programAbout := programAboutRe.FindSubmatch(page)[1]
+func processFeedDesc(page []byte) (string, error) {
+	matches := programAboutRe.FindSubmatch(page)
+	if len(matches) < 2 {
+		return "", errCantParse
+	}
 	re := regexp.MustCompile(`<(.+?)?>`)
-	return string(re.ReplaceAll(programAbout, []byte(``)))
+	return string(re.ReplaceAll(matches[1], []byte(``))), nil
 }
 
 func describeEpisodes(feed *feeds.Feed) {

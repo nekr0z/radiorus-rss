@@ -63,7 +63,7 @@ func TestFeed(t *testing.T) {
 
 	page = helperLoadBytes(t, "about")
 	page = cleanText(page)
-	feed.Description = processFeedDesc(page)
+	feed.Description, _ = processFeedDesc(page)
 
 	actual := createFeed(feed)
 	golden := filepath.Join("testdata", t.Name()+".golden")
@@ -94,11 +94,27 @@ func TestMissingEpisode(t *testing.T) {
 	wg.Add(1)
 	describeEpisode(&item, &wg)
 
-	got := string(buf.Bytes())
-	want := fmt.Sprintf("could not find episode description on page %v: %v", item.Link.Href, errCantParse)
+	assertStringContains(t, buf.String(), fmt.Sprintf("could not find episode description on page %v: %v", item.Link.Href, errCantParse))
+}
+
+func assertStringContains(t *testing.T, got, want string) {
 	if !strings.Contains(got, want) {
-		t.Fatalf("got %v, want %v", got, want)
+		t.Fatalf("%v does not contain %v", got, want)
 	}
+}
+
+func TestMissingFeedDesc(t *testing.T) {
+	server := helperMockServer(t)
+	defer helperCleanupFile(t, "episodes")
+	helperCleanupFile(t, "about")
+
+	var buf bytes.Buffer
+	log.SetOutput(&buf)
+	defer func() { log.SetOutput(os.Stderr) }()
+
+	processURL(fmt.Sprintf("%s/brand/57083/episodes", server.URL))
+
+	assertStringContains(t, buf.String(), fmt.Sprintf("could not find programme description on page %v: %v", server.URL+"/brand/57083/about", errCantParse))
 }
 
 func TestServedFeed(t *testing.T) {
