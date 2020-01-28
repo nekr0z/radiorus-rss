@@ -47,6 +47,10 @@ func TestFeed(t *testing.T) {
 
 	populateFeed(feed, page)
 
+	page = helperLoadBytes(t, "about")
+	page = cleanText(page)
+	feed.Description = processFeedDesc(page)
+
 	actual := createFeed(feed)
 	golden := filepath.Join("testdata", t.Name()+".golden")
 	if *update {
