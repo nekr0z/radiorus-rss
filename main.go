@@ -125,7 +125,7 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 		return fmt.Errorf("bad programme page")
 	}
 
-	feed.Title = string(titleMatch[1])
+	feed.Title = stripLink(string(titleMatch[1]))
 	programImage := programImageRe.FindSubmatch(page)
 	feed.Image = &feeds.Image{
 		Link:  feed.Link.Href,
@@ -254,4 +254,10 @@ func episodeID(url string) string {
 		return "http://" + strings.TrimPrefix(url, "https://")
 	}
 	return url
+}
+
+// stripLink strips string of <a> tags
+func stripLink(s string) string {
+	re := regexp.MustCompile(`</?a.*?>`)
+	return re.ReplaceAllString(s, "")
 }

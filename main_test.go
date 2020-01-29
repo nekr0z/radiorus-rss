@@ -226,3 +226,22 @@ func TestEpisodeID(t *testing.T) {
 		}
 	}
 }
+
+func TestStripLink(t *testing.T) {
+	type testval struct {
+		raw string
+		ret string
+	}
+
+	var tests = []testval{
+		{`<a href="/brand/57083">"Аэростат"</a>`, `"Аэростат"`},
+	}
+
+	for _, test := range tests {
+		got := stripLink(test.raw)
+		want := test.ret
+		if got != want {
+			t.Error("want:", want, "got:", got)
+		}
+	}
+}
