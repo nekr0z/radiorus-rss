@@ -44,7 +44,6 @@ var (
 	programNameRe  = regexp.MustCompile(`<h2>(.+?)?</h2>`)
 	programAboutRe = regexp.MustCompile(`(?s)<div class="brand__content_text__anons">(.+?)?</div>`)
 	programImageRe = regexp.MustCompile(`(?s)<div class="brand\-promo__header">(.+?)?<img src="(.+?)?"(.+?)?alt='(.+?)?'>`)
-	episodeAudioRe = regexp.MustCompile(`data\-id="(.+?)?">`)
 	episodeDateRe  = regexp.MustCompile(`brand\-time brand\-menu\-link">(.+?)?\.(.+?)?\.(.+?)? в (.+?)?:(.+?)?</a>`)
 	episodeDescRe  = regexp.MustCompile(`<p class="anons">(.+?)?</p>`)
 	episodeTitleRe = regexp.MustCompile(`title brand\-menu\-link">(.+?)?</a>`)
@@ -141,7 +140,7 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 		}
 		episodeUrl := urlPrefix + string(episodeUrlRe.FindSubmatch(episode)[1])
 		episodeTitle := string(episodeTitleRe.FindSubmatch(episode)[1])
-		episodeAudioUrl := "https://audio.vgtrk.com/download?id=" + string(episodeAudioRe.FindSubmatch(episode)[1])
+		enclosure := findEnclosure(episode)
 		dateBytes := episodeDateRe.FindSubmatch(episode)
 		var date [5]int
 		for i, b := range dateBytes[1:] {
@@ -155,18 +154,24 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 		episodeDate := time.Date(date[2], time.Month(date[1]), date[0], date[3], date[4], 0, 0, moscow)
 
 		feed.Add(&feeds.Item{
-			Id:    episodeID(episodeUrl),
-			Link:  &feeds.Link{Href: episodeUrl},
-			Title: episodeTitle,
-			Enclosure: &feeds.Enclosure{
-				Url:    episodeAudioUrl,
-				Length: "1024",
-				Type:   "audio/mpeg",
-			},
-			Created: episodeDate,
+			Id:        episodeID(episodeUrl),
+			Link:      &feeds.Link{Href: episodeUrl},
+			Title:     episodeTitle,
+			Enclosure: enclosure,
+			Created:   episodeDate,
 		})
 	}
 	return nil
+}
+
+func findEnclosure(ep []byte) *feeds.Enclosure {
+	episodeAudioRe := regexp.MustCompile(`data\-id="(.+?)?">`)
+	episodeAudioUrl := "https://audio.vgtrk.com/download?id=" + string(episodeAudioRe.FindSubmatch(ep)[1])
+	return &feeds.Enclosure{
+		Url:    episodeAudioUrl,
+		Length: "1024",
+		Type:   "audio/mpeg",
+	}
 }
 
 func findEpisodes(page []byte) [][]byte {
