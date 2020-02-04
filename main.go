@@ -165,10 +165,17 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 }
 
 func findEnclosure(ep []byte) *feeds.Enclosure {
-	episodeAudioRe := regexp.MustCompile(`data\-id="(.+?)?">`)
-	episodeAudioUrl := "https://audio.vgtrk.com/download?id=" + string(episodeAudioRe.FindSubmatch(ep)[1])
+	re := regexp.MustCompile(`data\-type="audio"\s+data\-id="(.+?)?">`)
+
+	matches := re.FindSubmatch(ep)
+	if len(matches) < 2 {
+		return &feeds.Enclosure{}
+	}
+
+	url := "https://audio.vgtrk.com/download?id=" + string(matches[1])
+
 	return &feeds.Enclosure{
-		Url:    episodeAudioUrl,
+		Url:    url,
 		Length: "1024",
 		Type:   "audio/mpeg",
 	}
