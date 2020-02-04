@@ -44,7 +44,6 @@ var (
 	programNameRe  = regexp.MustCompile(`<h2>(.+?)?</h2>`)
 	programAboutRe = regexp.MustCompile(`(?s)<div class="brand__content_text__anons">(.+?)?</div>`)
 	programImageRe = regexp.MustCompile(`(?s)<div class="brand\-promo__header">(.+?)?<img src="(.+?)?"(.+?)?alt='(.+?)?'>`)
-	episodeRe      = regexp.MustCompile(`(?s)<div class="brand__list\-\-wrap\-\-item">(.+?)?<div class="add\-to\-list">`)
 	episodeAudioRe = regexp.MustCompile(`data\-id="(.+?)?">`)
 	episodeDateRe  = regexp.MustCompile(`brand\-time brand\-menu\-link">(.+?)?\.(.+?)?\.(.+?)? в (.+?)?:(.+?)?</a>`)
 	episodeDescRe  = regexp.MustCompile(`<p class="anons">(.+?)?</p>`)
@@ -133,7 +132,7 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 		Title: string(programImage[4]),
 	}
 
-	episodes := episodeRe.FindAll(page, -1)
+	episodes := findEpisodes(page)
 	urlPrefix := episodeURLPrefix(feed.Link.Href)
 
 	for _, episode := range episodes {
@@ -168,6 +167,12 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 		})
 	}
 	return nil
+}
+
+func findEpisodes(page []byte) [][]byte {
+	episodeRe := regexp.MustCompile(`(?s)<div class="brand__list\-\-wrap\-\-item">(.+?)?data-id="(.+?)"></div>`)
+	episodes := episodeRe.FindAll(page, -1)
+	return episodes
 }
 
 func describeFeed(feed *feeds.Feed, wg *sync.WaitGroup) {
