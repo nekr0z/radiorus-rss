@@ -87,7 +87,6 @@ func TestFindEpisodes(t *testing.T) {
 	var tests = []string{
 		"episodes",
 		"episodes.59798",
-		"episodes.63147",
 	}
 
 	for _, test := range tests {
@@ -115,32 +114,6 @@ func TestUpdatingFeed(t *testing.T) {
 	}
 
 	page = helperLoadBytes(t, "episodes.59798")
-	page = cleanText(page)
-
-	if err := populateFeed(feed, page); err != nil {
-		t.Fatal(err)
-	}
-
-	actual := createFeed(feed)
-	golden := filepath.Join("testdata", t.Name()+".golden")
-	if *update {
-		writeFile(actual, golden)
-	}
-	expected, _ := ioutil.ReadFile(golden)
-
-	if !bytes.Equal(actual, expected) {
-		t.Fail()
-	}
-}
-
-func TestVideoFeed(t *testing.T) {
-	var page []byte
-
-	feed := &feeds.Feed{
-		Link: &feeds.Link{Href: "http://www.radiorus.ru/brand/63147/episodes"},
-	}
-
-	page = helperLoadBytes(t, "episodes.63147")
 	page = cleanText(page)
 
 	if err := populateFeed(feed, page); err != nil {
