@@ -50,6 +50,19 @@ func helperLoadBytes(t testing.TB, name string) []byte {
 	return bytes
 }
 
+func assertGolden(t *testing.T, actual []byte, golden string) {
+	t.Helper()
+
+	if *update {
+		writeFile(actual, golden)
+	}
+	expected, _ := ioutil.ReadFile(golden)
+
+	if !bytes.Equal(actual, expected) {
+		t.Fail()
+	}
+}
+
 func TestFeed(t *testing.T) {
 	var page []byte
 
@@ -73,14 +86,7 @@ func TestFeed(t *testing.T) {
 
 	actual := createFeed(feed)
 	golden := filepath.Join("testdata", t.Name()+".golden")
-	if *update {
-		writeFile(actual, golden)
-	}
-	expected, _ := ioutil.ReadFile(golden)
-
-	if !bytes.Equal(actual, expected) {
-		t.Fail()
-	}
+	assertGolden(t, actual, golden)
 }
 
 func TestFindEpisodes(t *testing.T) {
@@ -95,14 +101,7 @@ func TestFindEpisodes(t *testing.T) {
 
 		actual := bytes.Join(findEpisodes(page), []byte("\n&&&\n"))
 		golden := filepath.Join("testdata", t.Name()+"."+test+".golden")
-		if *update {
-			writeFile(actual, golden)
-		}
-		expected, _ := ioutil.ReadFile(golden)
-
-		if !bytes.Equal(actual, expected) {
-			t.Fail()
-		}
+		assertGolden(t, actual, golden)
 	}
 }
 
@@ -122,14 +121,7 @@ func TestUpdatingFeed(t *testing.T) {
 
 	actual := createFeed(feed)
 	golden := filepath.Join("testdata", t.Name()+".golden")
-	if *update {
-		writeFile(actual, golden)
-	}
-	expected, _ := ioutil.ReadFile(golden)
-
-	if !bytes.Equal(actual, expected) {
-		t.Fail()
-	}
+	assertGolden(t, actual, golden)
 }
 
 func TestMissingEpisode(t *testing.T) {
@@ -199,14 +191,7 @@ func TestServedFeed(t *testing.T) {
 
 	actual := bytes.ReplaceAll(createFeed(feed), []byte(server.URL), []byte(fakeURL))
 	golden := filepath.Join("testdata", t.Name()+".golden")
-	if *update {
-		writeFile(actual, golden)
-	}
-	expected, _ := ioutil.ReadFile(golden)
-
-	if !bytes.Equal(actual, expected) {
-		t.Fail()
-	}
+	assertGolden(t, actual, golden)
 }
 
 func BenchmarkServedFeed(b *testing.B) {
