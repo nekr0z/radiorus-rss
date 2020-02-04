@@ -102,16 +102,10 @@ func getFeed(url string) (feed *feeds.Feed) {
 		Link: &feeds.Link{Href: url},
 	}
 
-	for {
-		page := getPage(url)
-		if err := populateFeed(feed, page); err == errBadEpisode {
-			time.Sleep(15 * 60 * time.Second)
-			continue
-		} else if err != nil {
-			err = fmt.Errorf("could not process %v: %w", url, err)
-			log.Fatal(err)
-		}
-		break
+	page := getPage(url)
+	if err := populateFeed(feed, page); err != nil {
+		err = fmt.Errorf("could not process %v: %w", url, err)
+		log.Fatal(err)
 	}
 
 	return feed
