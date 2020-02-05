@@ -119,12 +119,7 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 	}
 	feed.Title = stripLink(string(title))
 
-	programImage := programImageRe.FindSubmatch(page)
-	feed.Image = &feeds.Image{
-		Link:  feed.Link.Href,
-		Url:   string(programImage[2]),
-		Title: string(programImage[4]),
-	}
+	addFeedImage(page, feed)
 
 	episodes := findEpisodes(page)
 	urlPrefix := episodeURLPrefix(feed.Link.Href)
@@ -152,6 +147,17 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 		})
 	}
 	return
+}
+
+func addFeedImage(page []byte, feed *feeds.Feed) {
+	programImage, err := parse(page, programImageRe, 4)
+	if err == nil {
+		feed.Image = &feeds.Image{
+			Link:  feed.Link.Href,
+			Url:   string(programImage[1]),
+			Title: string(programImage[3]),
+		}
+	}
 }
 
 func parse(src []byte, re *regexp.Regexp, n int) (out [][]byte, err error) {

@@ -57,9 +57,16 @@ func assertGolden(t *testing.T, actual []byte, golden string) {
 	t.Helper()
 
 	if *update {
-		writeFile(actual, golden)
+		if _, err := os.Stat(golden); os.IsNotExist(err) {
+			writeFile(actual, golden)
+		} else {
+			t.Log("file", golden, "exists, remove it to record new golden result")
+		}
 	}
-	expected, _ := ioutil.ReadFile(golden)
+	expected, err := ioutil.ReadFile(golden)
+	if err != nil {
+		t.Error("no file:", golden)
+	}
 
 	if !bytes.Equal(actual, expected) {
 		t.Fail()
@@ -105,6 +112,23 @@ func TestBadEpisode(t *testing.T) {
 			t.Error("for sample", i, "want:", errBadEpisode, "got:", err)
 		}
 	}
+}
+
+func TestNoImage(t *testing.T) {
+	feed := &feeds.Feed{
+		Link: &feeds.Link{Href: "http://www.radiorus.ru/brand/57083/episodes"},
+	}
+
+	page := helperLoadBytes(t, "episodes.noimg")
+	page = cleanText(page)
+
+	if err := populateFeed(feed, page); err != nil {
+		t.Fatal(err)
+	}
+
+	actual := createFeed(feed)
+	golden := filepath.Join("testdata", t.Name()+".golden")
+	assertGolden(t, actual, golden)
 }
 
 func TestFindEpisodes(t *testing.T) {
