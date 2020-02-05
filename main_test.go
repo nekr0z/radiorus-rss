@@ -26,6 +26,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"sync"
 	"testing"
@@ -298,6 +299,44 @@ func TestParseDate(t *testing.T) {
 		want := test.d
 		if !got.Equal(want) {
 			t.Error("want:", want, "got:", got)
+		}
+	}
+}
+
+func TestParseErrors(t *testing.T) {
+	type testval struct {
+		src []byte
+		re  *regexp.Regexp
+		n   int
+		err error
+	}
+
+	var tests = []testval{
+		{
+			[]byte("<h2>Аэростат</h2>"),
+			programNameRe,
+			1,
+			nil,
+		}, {
+			[]byte("<h2>Аэростат</h2><h2>foo</h2>"),
+			programNameRe,
+			1,
+			nil,
+		}, {
+			[]byte{},
+			programNameRe,
+			1,
+			errCantParse,
+		},
+	}
+
+	for _, test := range tests {
+		res, got := parse(test.src, test.re, test.n)
+		if test.err != got {
+			t.Error("for", test.src, test.re, test.n, "\nwant:", test.err, "got:", got)
+		}
+		if test.n != len(res) {
+			t.Error("for", test.src, test.re, test.n, "\nwant length:", test.n, "got:", len(res))
 		}
 	}
 }

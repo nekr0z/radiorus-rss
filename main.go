@@ -113,12 +113,12 @@ func getFeed(url string) (feed *feeds.Feed) {
 }
 
 func populateFeed(feed *feeds.Feed, page []byte) (err error) {
-	titleMatch := programNameRe.FindSubmatch(page)
-	if len(titleMatch) < 1 {
-		return fmt.Errorf("bad programme page")
+	title, err := parseSingle(page, programNameRe)
+	if err != nil {
+		return fmt.Errorf("bad programme page: title not found")
 	}
+	feed.Title = stripLink(string(title))
 
-	feed.Title = stripLink(string(titleMatch[1]))
 	programImage := programImageRe.FindSubmatch(page)
 	feed.Image = &feeds.Image{
 		Link:  feed.Link.Href,
@@ -133,8 +133,10 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 		if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
 			return errBadEpisode
 		}
-		episodeUrl := urlPrefix + string(episodeUrlRe.FindSubmatch(episode)[1])
-		episodeTitle := string(episodeTitleRe.FindSubmatch(episode)[1])
+		url, _ := parseSingle(episode, episodeUrlRe)
+		episodeUrl := urlPrefix + string(url)
+		title, _ := parseSingle(episode, episodeTitleRe)
+		episodeTitle := string(title)
 		enclosure := findEnclosure(episode)
 		date := findDate(episode)
 
@@ -147,6 +149,24 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 		})
 	}
 	return nil
+}
+
+func parse(src []byte, re *regexp.Regexp, n int) (out [][]byte, err error) {
+	match := re.FindSubmatch(src)
+	if len(match) != n+1 {
+		for i := 0; i < n; i++ {
+			out = append(out, []byte{})
+		}
+		return out, errCantParse
+	}
+
+	return match[1:], nil
+}
+
+func parseSingle(src []byte, re *regexp.Regexp) (out []byte, err error) {
+	got, err := parse(src, re, 1)
+	out = got[0]
+	return
 }
 
 func findDate(ep []byte) time.Time {
@@ -174,12 +194,12 @@ func parseDate(bytes [][]byte) time.Time {
 func findEnclosure(ep []byte) *feeds.Enclosure {
 	re := regexp.MustCompile(`data\-type="audio"\s+data\-id="(.+?)?">`)
 
-	matches := re.FindSubmatch(ep)
-	if len(matches) < 2 {
+	res, err := parseSingle(ep, re)
+	if err != nil {
 		return &feeds.Enclosure{}
 	}
 
-	url := "https://audio.vgtrk.com/download?id=" + string(matches[1])
+	url := "https://audio.vgtrk.com/download?id=" + string(res)
 
 	return &feeds.Enclosure{
 		Url:    url,
