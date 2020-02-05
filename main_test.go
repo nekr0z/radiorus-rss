@@ -27,6 +27,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"regexp"
+	"strconv"
 	"strings"
 	"sync"
 	"testing"
@@ -89,6 +90,21 @@ func TestFeed(t *testing.T) {
 	actual := createFeed(feed)
 	golden := filepath.Join("testdata", t.Name()+".golden")
 	assertGolden(t, actual, golden)
+}
+
+func TestBadEpisode(t *testing.T) {
+	feed := &feeds.Feed{
+		Link: &feeds.Link{Href: "http://www.radiorus.ru/brand/57083/episodes"},
+	}
+
+	for i := 0; i <= 1; i++ {
+		page := helperLoadBytes(t, "episodes.badep."+strconv.Itoa(i))
+		page = cleanText(page)
+
+		if err := populateFeed(feed, page); err != errBadEpisode {
+			t.Error("for sample", i, "want:", errBadEpisode, "got:", err)
+		}
+	}
 }
 
 func TestFindEpisodes(t *testing.T) {

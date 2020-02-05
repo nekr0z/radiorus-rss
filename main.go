@@ -133,7 +133,10 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 		if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
 			return errBadEpisode
 		}
-		url, _ := parseSingle(episode, episodeUrlRe)
+		url, err := parseSingle(episode, episodeUrlRe)
+		if err != nil {
+			return errBadEpisode
+		}
 		episodeUrl := urlPrefix + string(url)
 		title, _ := parseSingle(episode, episodeTitleRe)
 		episodeTitle := string(title)
@@ -148,7 +151,7 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 			Created:   date,
 		})
 	}
-	return nil
+	return
 }
 
 func parse(src []byte, re *regexp.Regexp, n int) (out [][]byte, err error) {
