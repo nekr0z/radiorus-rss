@@ -226,12 +226,12 @@ func describeFeed(feed *feeds.Feed, wg *sync.WaitGroup) {
 }
 
 func processFeedDesc(page []byte) (string, error) {
-	matches := programAboutRe.FindSubmatch(page)
-	if len(matches) < 2 {
-		return "", errCantParse
+	res, err := parseSingle(page, programAboutRe)
+	if err != nil {
+		return "", err
 	}
 	re := regexp.MustCompile(`<(.+?)?>`)
-	return string(re.ReplaceAll(matches[1], []byte(``))), nil
+	return string(re.ReplaceAll(res, []byte(``))), err
 }
 
 func describeEpisodes(feed *feeds.Feed) {
@@ -254,11 +254,11 @@ func describeEpisode(item *feeds.Item, wg *sync.WaitGroup) {
 }
 
 func processEpisodeDesc(page []byte) (string, error) {
-	matches := episodeDescRe.FindSubmatch(page)
-	if len(matches) < 2 {
-		return "", errCantParse
+	res, err := parseSingle(page, episodeDescRe)
+	if err != nil {
+		return "", err
 	}
-	return string(matches[1]), nil
+	return string(res), err
 }
 
 func getPage(pageUrl string) []byte {
