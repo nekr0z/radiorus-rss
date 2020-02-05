@@ -44,7 +44,6 @@ var (
 	programNameRe  = regexp.MustCompile(`<h2>(.+?)?</h2>`)
 	programAboutRe = regexp.MustCompile(`(?s)<div class="brand__content_text__anons">(.+?)?</div>`)
 	programImageRe = regexp.MustCompile(`(?s)<div class="brand\-promo__header">(.+?)?<img src="(.+?)?"(.+?)?alt='(.+?)?'>`)
-	episodeDateRe  = regexp.MustCompile(`brand\-time brand\-menu\-link">(.+?)?\.(.+?)?\.(.+?)? в (.+?)?:(.+?)?</a>`)
 	episodeDescRe  = regexp.MustCompile(`<p class="anons">(.+?)?</p>`)
 	episodeTitleRe = regexp.MustCompile(`title brand\-menu\-link">(.+?)?</a>`)
 	episodeUrlRe   = regexp.MustCompile(`<a href="/brand/(.+?)?" class="title`)
@@ -53,6 +52,8 @@ var (
 
 	errBadEpisode = fmt.Errorf("bad episode")
 	errCantParse  = fmt.Errorf("could not parse page")
+
+	moscow = time.FixedZone("Moscow Time", int((3 * time.Hour).Seconds()))
 )
 
 func main() {
@@ -135,27 +136,39 @@ func populateFeed(feed *feeds.Feed, page []byte) (err error) {
 		episodeUrl := urlPrefix + string(episodeUrlRe.FindSubmatch(episode)[1])
 		episodeTitle := string(episodeTitleRe.FindSubmatch(episode)[1])
 		enclosure := findEnclosure(episode)
-		dateBytes := episodeDateRe.FindSubmatch(episode)
-		var date [5]int
-		for i, b := range dateBytes[1:] {
-			d, err := strconv.Atoi(string(b))
-			if err != nil {
-				log.Fatal(err)
-			}
-			date[i] = d
-		}
-		moscow := time.FixedZone("Moscow Time", int((3 * time.Hour).Seconds()))
-		episodeDate := time.Date(date[2], time.Month(date[1]), date[0], date[3], date[4], 0, 0, moscow)
+		date := findDate(episode)
 
 		feed.Add(&feeds.Item{
 			Id:        episodeID(episodeUrl),
 			Link:      &feeds.Link{Href: episodeUrl},
 			Title:     episodeTitle,
 			Enclosure: enclosure,
-			Created:   episodeDate,
+			Created:   date,
 		})
 	}
 	return nil
+}
+
+func findDate(ep []byte) time.Time {
+	episodeDateRe := regexp.MustCompile(`brand\-time brand\-menu\-link">(.+?)?\.(.+?)?\.(.+?)? в (.+?)?:(.+?)?</a>`)
+	dateBytes := episodeDateRe.FindSubmatch(ep)
+	return parseDate(dateBytes)
+}
+
+func parseDate(bytes [][]byte) time.Time {
+	if len(bytes) < 4 {
+		return time.Date(1970, time.January, 1, 0, 0, 0, 0, moscow)
+	}
+
+	var date [5]int
+	for i, b := range bytes[1:] {
+		d, err := strconv.Atoi(string(b))
+		if err != nil {
+			return time.Date(1970, time.January, 1, 0, 0, 0, 0, moscow)
+		}
+		date[i] = d
+	}
+	return time.Date(date[2], time.Month(date[1]), date[0], date[3], date[4], 0, 0, moscow)
 }
 
 func findEnclosure(ep []byte) *feeds.Enclosure {
