@@ -222,7 +222,7 @@ func TestMissingFeed(t *testing.T) {
 		t.Fatalf("process ran with err %v, want exit status 1", err)
 	}
 
-	assertStringContains(t, string(out), fmt.Sprint("84/episodes: bad programme page"))
+	assertStringContains(t, string(out), "84/episodes: bad programme page")
 }
 
 func TestServedFeed(t *testing.T) {
