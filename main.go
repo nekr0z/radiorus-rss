@@ -16,6 +16,7 @@
 package main
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"io/ioutil"
@@ -27,6 +28,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/PuerkitoBio/goquery"
 	"github.com/gorilla/feeds"
 )
 
@@ -44,7 +46,6 @@ var (
 	programNameRe  = regexp.MustCompile(`<h2>(.+?)?</h2>`)
 	programAboutRe = regexp.MustCompile(`(?s)<div class="brand__content_text__anons">(.+?)?</div>`)
 	programImageRe = regexp.MustCompile(`(?s)<div class="brand\-promo__header">(.+?)?<img src="(.+?)?"(.+?)?alt='(.+?)?'>`)
-	episodeDescRe  = regexp.MustCompile(`<p class="anons">(.+?)?</p>`)
 	episodeTitleRe = regexp.MustCompile(`title brand\-menu\-link">(.+?)?</a>`)
 	episodeUrlRe   = regexp.MustCompile(`<a href="/brand/(.+?)?" class="title`)
 
@@ -263,11 +264,26 @@ func describeEpisode(item *feeds.Item, wg *sync.WaitGroup) {
 }
 
 func processEpisodeDesc(page []byte) (string, error) {
-	res, err := parseSingle(page, episodeDescRe)
+	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(page))
 	if err != nil {
 		return "", err
 	}
-	return string(res), err
+	var r []string
+	r = addText(r, doc.Find(".brand-episode__head").Find(".anons").Text())
+	r = addText(r, doc.Find(".brand-episode__body").Find(".body").Text())
+
+	res := strings.Join(r, fmt.Sprintf("\n\n"))
+	if res == "" {
+		return "", errCantParse
+	}
+	return res, err
+}
+
+func addText(arr []string, str string) []string {
+	if str != "" {
+		arr = append(arr, str)
+	}
+	return arr
 }
 
 func getPage(pageUrl string) []byte {
