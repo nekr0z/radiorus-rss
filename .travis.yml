@@ -8,7 +8,7 @@ env:
   - GO111MODULE=on
 
 before_script:
-  - bash <(curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.24.0)
+  - bash <(curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.33.0)
 
 script: 
   - golangci-lint run
