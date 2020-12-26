@@ -272,7 +272,7 @@ func processEpisodeDesc(page []byte) (string, error) {
 	r = addText(r, doc.Find(".brand-episode__head").Find(".anons").Text())
 	r = addText(r, doc.Find(".brand-episode__body").Find(".body").Text())
 
-	res := strings.Join(r, fmt.Sprintf("\n\n"))
+	res := strings.Join(r, "\n\n")
 	if res == "" {
 		return "", errCantParse
 	}
