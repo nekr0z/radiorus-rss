@@ -69,7 +69,7 @@ func assertGolden(t *testing.T, actual []byte, golden string) {
 	}
 
 	if !bytes.Equal(actual, expected) {
-		t.Fail()
+		t.Fatal("golden data doesn't match")
 	}
 }
 
@@ -379,4 +379,13 @@ func TestParseErrors(t *testing.T) {
 			t.Error("for", test.src, test.re, test.n, "\nwant length:", test.n, "got:", len(res))
 		}
 	}
+}
+
+func TestProcessEpisodeDesc(t *testing.T) {
+	page := helperLoadBytes(t, "blues")
+	got, err := processEpisodeDesc(page)
+	if err != nil {
+		t.Fatal(err)
+	}
+	assertGolden(t, []byte(got), filepath.Join("testdata", "blues.golden"))
 }

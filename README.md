@@ -1,7 +1,7 @@
 # radiorus-rss
 инструмент для создания RSS-лент передач «Радио России»
 
-[![Build Status](https://travis-ci.org/nekr0z/radiorus-rss.svg?branch=master)](https://travis-ci.org/nekr0z/radiorus-rss) [![codecov](https://codecov.io/gh/nekr0z/radiorus-rss/branch/master/graph/badge.svg)](https://codecov.io/gh/nekr0z/radiorus-rss) [![Go Report Card](https://goreportcard.com/badge/github.com/nekr0z/radiorus-rss)](https://goreportcard.com/report/github.com/nekr0z/radiorus-rss) [![GolangCI](https://golangci.com/badges/github.com/nekr0z/radiorus-rss.svg)](https://golangci.com)
+[![Build Status](https://travis-ci.com/nekr0z/radiorus-rss.svg?branch=master)](https://travis-ci.com/nekr0z/radiorus-rss) [![codecov](https://codecov.io/gh/nekr0z/radiorus-rss/branch/master/graph/badge.svg)](https://codecov.io/gh/nekr0z/radiorus-rss) [![Go Report Card](https://goreportcard.com/badge/github.com/nekr0z/radiorus-rss)](https://goreportcard.com/report/github.com/nekr0z/radiorus-rss)
 
 Этот парсер можно использовать для преобразования страницы передачи на сайте «Радио России» в RSS-ленту подкаста. На сегодняшний день поддерживаются только аудиопередачи, при попытке использовать идентификатор передачи с видеовыпусками лента будет сгенерирована, но в ней не будет прямых ссылок на видеофайлы.
 
@@ -36,6 +36,7 @@ $ radiorus-rss [опции]
 ## При создании использованы
 (и при компиляции входят в состав приложения):
 * [gorilla/feeds](https://github.com/gorilla/feeds) Copyright © 2013-2018 The Gorilla Feeds Authors
+* [goquery](https://github.com/PuerkitoBio/goquery) Copyright © 2012-2016, Martin Angers & Contributors
 * [The Go Programming Language](https://golang.org) Copyright © 2009 The Go Authors
 
 ## Если нравится и хочется помочь
