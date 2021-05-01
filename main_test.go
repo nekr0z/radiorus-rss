@@ -329,7 +329,7 @@ func TestParseDate(t *testing.T) {
 	}
 
 	var tests = []testval{
-		{[][]byte{[]byte{}, []byte("24"), []byte("11"), []byte(`2019`), []byte("14"), []byte("10")}, time.Date(2019, time.November, 24, 14, 10, 0, 0, moscow)},
+		{[][]byte{{}, []byte("24"), []byte("11"), []byte(`2019`), []byte("14"), []byte("10")}, time.Date(2019, time.November, 24, 14, 10, 0, 0, moscow)},
 		{[][]byte{[]byte("foo"), []byte("bar"), []byte("baz"), []byte("qux"), []byte("none")}, time.Date(1970, time.January, 1, 0, 0, 0, 0, moscow)},
 		{[][]byte{}, time.Date(1970, time.January, 1, 0, 0, 0, 0, moscow)},
 	}
