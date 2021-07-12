@@ -1,7 +1,7 @@
 module github.com/nekr0z/radiorus-rss
 
 require (
-	github.com/PuerkitoBio/goquery v1.6.1
+	github.com/PuerkitoBio/goquery v1.7.1
 	github.com/gorilla/feeds v1.1.1
 	github.com/kr/pretty v0.2.1 // indirect
 )
