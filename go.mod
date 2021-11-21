@@ -1,4 +1,4 @@
-module github.com/nekr0z/radiorus-rss
+module evgenykuznetsov.org/go/radiorus-rss
 
 require (
 	github.com/PuerkitoBio/goquery v1.6.1
