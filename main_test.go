@@ -166,6 +166,25 @@ func TestUpdatingFeed(t *testing.T) {
 	assertGolden(t, actual, golden)
 }
 
+func TestPopulateFeed(t *testing.T) {
+	var page []byte
+
+	feed := &feeds.Feed{
+		Link: &feeds.Link{Href: "https://smotrim.ru/brand/57083"},
+	}
+
+	page = helperLoadBytes(t, "smotrim.57083")
+	page = cleanText(page)
+
+	if err := populateFeed(feed, page); err != nil {
+		t.Fatal(err)
+	}
+
+	actual := createFeed(feed)
+	golden := filepath.Join("testdata", t.Name()+".golden")
+	assertGolden(t, actual, golden)
+}
+
 func TestMissingEpisode(t *testing.T) {
 	server := helperMockServer(t)
 	defer helperCleanupServer(t)
@@ -242,6 +261,47 @@ func BenchmarkServedFeed(b *testing.B) {
 
 	for n := 0; n < b.N; n++ {
 		processURL(fmt.Sprintf("%s/brand/57083/episodes", server.URL))
+	}
+}
+
+func TestGetFeed(t *testing.T) {
+	radiorus := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		page := helperLoadBytes(t, "episodes")
+		_, _ = w.Write(page)
+	}))
+	defer radiorus.Close()
+
+	smotrim := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		page := helperLoadBytes(t, "smotrim.57083")
+		_, _ = w.Write(page)
+	}))
+	defer smotrim.Close()
+
+	redir := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, smotrim.URL, 301)
+	}))
+	defer redir.Close()
+
+	tests := map[string]struct {
+		url  string
+		want string
+		desc bool
+	}{
+		"radiorus": {radiorus.URL, radiorus.URL, false},
+		"smotrim":  {redir.URL, smotrim.URL, true},
+	}
+
+	for name, tc := range tests {
+		t.Run(name, func(t *testing.T) {
+			feed := getFeed(tc.url)
+			if tc.want != feed.Link.Href {
+				t.Fatalf("\nwant %s, got %s", tc.want, feed.Link.Href)
+			}
+			ne := feed.Description != ""
+			if ne != tc.desc {
+				t.Fatalf("\nwant %v, got %v", tc.desc, ne)
+			}
+		})
 	}
 }
 

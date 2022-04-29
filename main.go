@@ -22,6 +22,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"regexp"
 	"strconv"
 	"strings"
@@ -77,8 +78,10 @@ func processURL(url string) *feeds.Feed {
 	feed := getFeed(url)
 
 	var wg sync.WaitGroup
-	wg.Add(1)
-	go describeFeed(feed, &wg)
+	if feed.Description == "" {
+		wg.Add(1)
+		go describeFeed(feed, &wg)
+	}
 	describeEpisodes(feed)
 	wg.Wait()
 
@@ -100,11 +103,11 @@ func writeFile(output []byte, filename string) {
 }
 
 func getFeed(url string) (feed *feeds.Feed) {
+	page, url := getPage(url)
 	feed = &feeds.Feed{
 		Link: &feeds.Link{Href: url},
 	}
 
-	page := getPage(url)
 	if err := populateFeed(feed, page); err != nil {
 		err = fmt.Errorf("could not process %v: %w", url, err)
 		log.Fatal(err)
@@ -114,43 +117,121 @@ func getFeed(url string) (feed *feeds.Feed) {
 }
 
 func populateFeed(feed *feeds.Feed, page []byte) (err error) {
-	title, err := parseSingle(page, programNameRe)
+	feed.Title, err = parseText(page, ".brand-main-item__title")
+	if feed.Title == "" {
+		feed.Title, err = parseProgrammeTitle(page)
+	}
+
 	if err != nil {
 		return fmt.Errorf("bad programme page: title not found")
 	}
-	feed.Title = stripLink(string(title))
+
+	feed.Description, _ = parseText(page, ".program-about__text")
 
 	addFeedImage(page, feed)
 
-	episodes := findEpisodes(page)
-	urlPrefix := episodeURLPrefix(feed.Link.Href)
+	switch site := parseSite(feed); site {
+	case "smotrim.ru":
+		err = populateSmotrimEpisodes(feed, page)
+	default:
+		episodes := findEpisodes(page)
+		urlPrefix := episodeURLPrefix(feed.Link.Href)
 
-	for _, episode := range episodes {
-		if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
-			return errBadEpisode
-		}
-		url, err := parseSingle(episode, episodeUrlRe)
-		if err != nil {
-			return errBadEpisode
-		}
-		episodeUrl := urlPrefix + string(url)
-		title, _ := parseSingle(episode, episodeTitleRe)
-		episodeTitle := string(title)
-		enclosure := findEnclosure(episode)
-		date := findDate(episode)
+		for _, episode := range episodes {
+			if len(episodeUrlRe.FindAllSubmatch(episode, -1)) > 1 {
+				return errBadEpisode
+			}
+			url, err := parseSingle(episode, episodeUrlRe)
+			if err != nil {
+				return errBadEpisode
+			}
+			episodeUrl := urlPrefix + string(url)
+			title, _ := parseSingle(episode, episodeTitleRe)
+			episodeTitle := string(title)
+			enclosure := findEnclosure(episode)
+			date := findDate(episode)
 
-		feed.Add(&feeds.Item{
-			Id:        episodeID(episodeUrl),
-			Link:      &feeds.Link{Href: episodeUrl},
-			Title:     episodeTitle,
-			Enclosure: enclosure,
-			Created:   date,
-		})
+			feed.Add(&feeds.Item{
+				Id:        episodeID(episodeUrl),
+				Link:      &feeds.Link{Href: episodeUrl},
+				Title:     episodeTitle,
+				Enclosure: enclosure,
+				Created:   date,
+			})
+		}
 	}
 	return
 }
 
+func populateSmotrimEpisodes(feed *feeds.Feed, page []byte) (err error) {
+	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(page))
+	if err != nil {
+		return
+	}
+	base, err := url.Parse(feed.Link.Href)
+	if err != nil {
+		return
+	}
+	doc.Find(".episode-card").Each(func(i int, s *goquery.Selection) {
+		l, _ := s.Find(".episode-card__link").Attr("href")
+		id := strings.TrimPrefix(l, "/audio/")
+		link, err := base.Parse(l)
+		if err != nil {
+			return
+		}
+		title := strings.TrimSpace(strings.TrimPrefix(s.Find(".episode-card__title").Text(), s.Find(".episode-card__title__brand").Text()))
+		feed.Add(&feeds.Item{
+			Id:        id,
+			Link:      &feeds.Link{Href: link.String()},
+			Title:     title,
+			Enclosure: enclosure(id),
+		})
+	})
+	return
+}
+
+func parseSite(feed *feeds.Feed) string {
+	u, err := url.Parse(feed.Link.Href)
+	if err != nil {
+		return ""
+	}
+	return u.Hostname()
+}
+
+func parseProgrammeTitle(page []byte) (title string, err error) {
+	t, err := parseSingle(page, programNameRe)
+	if err != nil {
+		return
+	}
+	title = stripLink(string(t))
+	return
+}
+
+func parseText(page []byte, sel string) (title string, err error) {
+	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(page))
+	if err != nil {
+		return
+	}
+	title = strings.TrimSpace(doc.Find(sel).Text())
+	return
+}
+
 func addFeedImage(page []byte, feed *feeds.Feed) {
+	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(page))
+	if err != nil {
+		return
+	}
+	img := doc.Find(".brand-main-item__picture").Find("img")
+	if src, ok := img.Attr("src"); ok {
+		t, _ := img.Attr("title")
+		feed.Image = &feeds.Image{
+			Link:  feed.Link.Href,
+			Url:   src,
+			Title: t,
+		}
+		return
+	}
+
 	programImage, err := parse(page, programImageRe, 4)
 	if err == nil {
 		feed.Image = &feeds.Image{
@@ -209,7 +290,12 @@ func findEnclosure(ep []byte) *feeds.Enclosure {
 		return &feeds.Enclosure{}
 	}
 
-	url := "https://audio.vgtrk.com/download?id=" + string(res)
+	return enclosure(string(res))
+}
+
+func enclosure(no string) *feeds.Enclosure {
+
+	url := "https://audio.vgtrk.com/download?id=" + string(no)
 
 	return &feeds.Enclosure{
 		Url:    url,
@@ -227,7 +313,7 @@ func findEpisodes(page []byte) [][]byte {
 func describeFeed(feed *feeds.Feed, wg *sync.WaitGroup) {
 	defer wg.Done()
 	url := strings.TrimSuffix(feed.Link.Href, "episodes") + "about"
-	page := getPage(url)
+	page, _ := getPage(url)
 	desc, err := processFeedDesc(page)
 	if err != nil {
 		log.Printf("could not find programme description on page %v: %v", url, err)
@@ -255,12 +341,29 @@ func describeEpisodes(feed *feeds.Feed) {
 
 func describeEpisode(item *feeds.Item, wg *sync.WaitGroup) {
 	defer wg.Done()
-	page := getPage(item.Link.Href)
+	page, _ := getPage(item.Link.Href)
 	desc, err := processEpisodeDesc(page)
 	if err != nil {
 		log.Printf("could not find episode description on page %v: %v", item.Link.Href, err)
 	}
 	item.Description = desc
+	if item.Created.IsZero() {
+		item.Created = parseSmotrimDate(page)
+	}
+}
+
+func parseSmotrimDate(page []byte) (t time.Time) {
+	s, err := parseText(page, ".video__date")
+	if err != nil {
+		return
+	}
+	mnths := [12]string{"января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"}
+	for i, mnt := range mnths {
+		s = strings.ReplaceAll(s, mnt, strconv.Itoa(i+1))
+	}
+	s = fmt.Sprintf("%s z+03", s)
+	t, _ = time.Parse("2 1 2006, 15:04 z-07", s)
+	return
 }
 
 func processEpisodeDesc(page []byte) (string, error) {
@@ -271,6 +374,7 @@ func processEpisodeDesc(page []byte) (string, error) {
 	var r []string
 	r = addText(r, doc.Find(".brand-episode__head").Find(".anons").Text())
 	r = addText(r, doc.Find(".brand-episode__body").Find(".body").Text())
+	r = addText(r, strings.TrimSpace(doc.Find(".video__body").Text()))
 
 	res := strings.Join(r, "\n\n")
 	if res == "" {
@@ -286,7 +390,7 @@ func addText(arr []string, str string) []string {
 	return arr
 }
 
-func getPage(pageUrl string) []byte {
+func getPage(pageUrl string) ([]byte, string) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", pageUrl, nil)
 	if err != nil {
@@ -305,7 +409,7 @@ func getPage(pageUrl string) []byte {
 
 	page = cleanText(page)
 
-	return page
+	return page, res.Request.URL.String()
 }
 
 // cleanText replaces HTML-encoded symbols with proper UTF
