@@ -51,6 +51,7 @@ var (
 	episodeUrlRe   = regexp.MustCompile(`<a href="/brand/(.+?)?" class="title`)
 
 	outputPath, programNumber string
+	smotrim                   bool
 
 	errBadEpisode = fmt.Errorf("bad episode")
 	errCantParse  = fmt.Errorf("could not parse page")
@@ -61,9 +62,13 @@ var (
 func main() {
 	flag.StringVar(&outputPath, "path", "./", "path to put resulting RSS file in")
 	flag.StringVar(&programNumber, "brand", "57083", "brand number (defaults to Aerostat)")
+	flag.BoolVar(&smotrim, "smotrim", false, "use smotrim.ru directly")
 	flag.Parse()
 
 	url := "https://www.radiorus.ru/brand/" + programNumber + "/episodes"
+	if smotrim {
+		url = "https://smotrim.ru/brand/" + programNumber
+	}
 
 	feed := processURL(url)
 
