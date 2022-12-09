@@ -1,7 +1,7 @@
 # radiorus-rss
 инструмент для создания RSS-лент передач «Радио России»
 
-[![codecov](https://codecov.io/gh/nekr0z/radiorus-rss/branch/master/graph/badge.svg)](https://codecov.io/gh/nekr0z/radiorus-rss) [![Go Report Card](https://goreportcard.com/badge/evgenykuznetsov.org/go/radiorus-rss)](https://goreportcard.com/report/evgenykuznetsov.org/go/radiorus-rss)
+**Это архивная версия репозитория. Актуальная версия [на сайте автора](http://evgenykuznetsov.org/go/radiorus-rss).**
 
 Этот парсер можно использовать для преобразования страницы передачи на сайте «Радио России» в RSS-ленту подкаста. На сегодняшний день поддерживаются только аудиопередачи, при попытке использовать идентификатор передачи с видеовыпусками лента будет сгенерирована, но в ней не будет прямых ссылок на видеофайлы.
 
@@ -36,13 +36,10 @@ $ radiorus-rss [опции]
 использовать сайт `smotrim.ru` напрямую, без обращения к `www.radiorus.ru`: с апреля 2022 года страницы передач автоматически перенаправляются на `smotrim.ru`, и эта опция позволяет использовать программу в случае, если доступа к сайту `www.radiorus.ru` нет (с февраля 2022 года сайт недоступен из Европы).
 
 ## Применение
-Один из возможных сценариев использования — загрузить скомпилированное приложение на сервер и настроить автоматическое создание RSS-ленты через `cron` (промежутки подобрать сообразно с частотой выхода передачи). Именно так сделана [RSS-лента для передачи «Аэростат»](http://evgenykuznetsov.org/feeds/radiorus-57083.rss) на моём сайте.
+Один из возможных сценариев использования — загрузить скомпилированное приложение на сервер и настроить автоматическое создание RSS-ленты через `cron` (промежутки подобрать сообразно с частотой выхода передачи).
 
 ## При создании использованы
 (и при компиляции входят в состав приложения):
 * [gorilla/feeds](https://github.com/gorilla/feeds) Copyright © 2013-2018 The Gorilla Feeds Authors
 * [goquery](https://github.com/PuerkitoBio/goquery) Copyright © 2012-2016, Martin Angers & Contributors
 * [The Go Programming Language](https://golang.org) Copyright © 2009 The Go Authors
-
-## Если нравится и хочется помочь
-Можно открыть issue или pull request, а можно просто [купить мне кофе](https://www.buymeacoffee.com/nekr0z).
